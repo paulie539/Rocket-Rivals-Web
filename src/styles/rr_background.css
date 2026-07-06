@@ -1,0 +1,8 @@
+/* ── Canvas: fixed, full-screen, behind all page content ── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
