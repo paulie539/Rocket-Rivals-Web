@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import '../styles/cards.css';
+import '../styles/divisions.css';
+
+import challengersIcon from '../assets/images/challengerszn7_0.png';
+import legendsIcon from '../assets/images/legendsszn7.png';
+import titansIcon from '../assets/images/titansszn7_0.png';
+
+import c1 from '../assets/images/c1icon.png';
+import c2 from '../assets/images/c2icon.png';
+import c3 from '../assets/images/c3icon.png';
+import gc1 from '../assets/images/gc1icon_1.png';
+import gc2 from '../assets/images/gc2icon.png';
+import gc3 from '../assets/images/gc3icon.png';
+import ssl from '../assets/images/SSLicon.png';
+---
+
+<Layout title="Divisions">
+  <div class="divisions-header">
+    <h2><strong>Rocket Rivals Divisions</strong></h2>
+    <p>Form your team in one of our 3 divisions! Whether you're looking to improve, or just enjoy some fun, competitive rocket league, everyone has a home in Rocket Rivals</p>
+  </div>
+
+  <div class="division-card division-card--challengers">
+    <div class="division-card__icon">
+      <a href="https://discord.gg/8M6HYuqaRB" title="Join The Challengers Discord!">
+        <Image class="esports-card" src={challengersIcon} alt="Join The Challengers Discord!" width={450} height={450} />
+      </a>
+    </div>
+    <div class="division-card__ranks">
+      <span data-tooltip="Champion 1" data-tooltip-pos="above"><Image src={c1} alt="Champion 1 Rank" width={150} height={150} /></span>
+      <span data-tooltip="Champion 2" data-tooltip-pos="above"><Image src={c2} alt="Champion 2 Rank" width={150} height={150} /></span>
+      <span data-tooltip="Champion 3" data-tooltip-pos="above"><Image src={c3} alt="Champion 3 Rank" width={150} height={150} /></span>
+    </div>
+  </div>
+
+  <div class="division-card division-card--legends">
+    <div class="division-card__icon">
+      <a href="https://discord.gg/4VsVf5BSQ8" title="Join The Legends Discord!">
+        <Image class="esports-card" src={legendsIcon} alt="Join The Legends Discord!" width={450} height={450} />
+      </a>
+    </div>
+    <div class="division-card__ranks">
+      <span data-tooltip="Grand Champion 1" data-tooltip-pos="above"><Image src={gc1} alt="Grand Champion 1 Rank" width={170} height={170} /></span>
+      <span data-tooltip="Grand Champion 2" data-tooltip-pos="above"><Image src={gc2} alt="Grand Champion 2 Rank" width={170} height={170} /></span>
+    </div>
+  </div>
+
+  <div class="division-card division-card--titans">
+    <div class="division-card__icon">
+      <a href="https://discord.gg/KzV7czKBAk" title="Join The Titans Discord!">
+        <Image class="esports-card" src={titansIcon} alt="Join The Titans Discord!" width={450} height={450} />
+      </a>
+    </div>
+    <div class="division-card__ranks">
+      <span data-tooltip="Grand Champion 3" data-tooltip-pos="above"><Image src={gc3} alt="Grand Champion 3 Rank" width={170} height={170} /></span>
+      <span data-tooltip="Supersonic Legend" data-tooltip-pos="above"><Image src={ssl} alt="Super Sonic Legend Rank" width={170} height={170} /></span>
+    </div>
+  </div>
+</Layout>

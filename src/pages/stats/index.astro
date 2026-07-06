@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/divisions.css';
+---
+
+<Layout title="Stats">
+  <div>
+    <h2><strong>League Statistics&nbsp;</strong></h2>
+    <p>Explore division-specific performance metrics from Rocket Rivals leagues<br />Track player progression, team performance, and seasonal trends across all divisions</p>
+  </div>
+
+  <div class="rr-spacer rr-spacer--md"></div>
+
+  <p>
+    <label for="division-select">Select Division: </label>
+    <select id="division-select" onchange="location = this.value;">
+      <option value="#">-- None --</option>
+      <option value="/stats/titans">Titans</option>
+      <option value="/stats/legends">Legends</option>
+      <option value="/stats/challengers">Challengers</option>
+    </select>
+  </p>
+</Layout>

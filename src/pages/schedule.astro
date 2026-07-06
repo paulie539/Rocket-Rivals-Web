@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import '../styles/schedule.css';
+
+import titansSchedule from '../assets/images/rocketrivalsszn7titansschedule.png';
+import legendsSchedule from '../assets/images/rocketrivalsszn7legendsschedule.png';
+import challengersSchedule from '../assets/images/rocketrivalsszn7challengersschedule_0.png';
+---
+
+<Layout title="Schedule">
+  <div>
+    <h2><strong>Come check out our live streams!</strong></h2>
+  </div>
+
+  <div class="rr-twitch-panel">
+    <p><a href="https://www.twitch.tv/rocket_rivals">Rocket Rivals on Twitch</a></p>
+    <div class="twitch-embed-wrapper" data-twitch-src="https://player.twitch.tv/?channel=Rocket_Rivals"></div>
+  </div>
+
+  <h2>Twitch Schedule</h2>
+  <div class="rr-schedule-wrapper">
+    <p class="rr-schedule-intro">Matches are played on Saturday and Sunday evenings &mdash; all times Eastern.</p>
+    <div class="rr-division-tabs">
+      <button type="button" class="rr-tab-btn" data-division="titans">Titans</button>
+      <button type="button" class="rr-tab-btn" data-division="legends">Legends</button>
+      <button type="button" class="rr-tab-btn" data-division="challengers">Challengers</button>
+    </div>
+    <div class="rr-schedule-panels">
+      <div class="rr-schedule-panel" data-division="titans">
+        <Image src={titansSchedule} alt="Titans Division Schedule" width={750} height={420} loading="lazy" />
+      </div>
+      <div class="rr-schedule-panel" data-division="legends">
+        <Image src={legendsSchedule} alt="Legends Division Schedule" width={750} height={420} loading="lazy" />
+      </div>
+      <div class="rr-schedule-panel" data-division="challengers">
+        <Image src={challengersSchedule} alt="Challengers Division Schedule" width={750} height={420} loading="lazy" />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script src="../scripts/schedule.js"></script>

@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+
+import '../styles/global.css';
+import '../styles/hero.css';
+import '../styles/footer.css';
+import '../styles/rr_background.css';
+
+import logo from '../assets/images/rocketrivalsszn7_2.png';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const navItems = [
+  { href: '/about', label: 'About' },
+  { href: '/divisions', label: 'Divisions' },
+  { href: '/stats', label: 'Stats' },
+  { href: '/schedule', label: 'Schedule' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Rocket Rivals</title>
+  </head>
+  <body>
+    <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+
+    <div id="page-wrapper">
+      <header id="header" role="banner">
+        <div class="hero-logo" data-tooltip="Return to Home">
+          <a href="/" rel="home" title="Rocket Rivals">
+            <Image src={logo} alt="Rocket Rivals" width={200} />
+          </a>
+        </div>
+
+        <div class="hero-text">
+          <p><a href="/" rel="home"><strong>Rocket Rivals</strong></a></p>
+        </div>
+
+        <nav class="hero-nav" aria-label="Site navigation">
+          {navItems.map((item) => (
+            item.label === 'Schedule' ? (
+              <span class="rr-nav-schedule-wrapper">
+                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+                <div id="rr-live-status" aria-live="polite" aria-atomic="true"></div>
+              </span>
+            ) : (
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+            )
+          ))}
+          <a href="https://discord.gg/bNVBfCfVpY" class="discord-button" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
+        </nav>
+      </header>
+
+      <main id="main" role="main">
+        <a id="main-content" tabindex="-1"></a>
+        <div class="stack">
+          <slot />
+        </div>
+      </main>
+
+      <footer id="footer" role="contentinfo">
+        <div class="rr-footer__inner">
+          <span class="rr-footer__copy">&copy; 2026 Rocket Rivals. All rights reserved</span>
+          <div class="rr-footer__toggle">
+            <button id="rr-bg-toggle" class="rr-bg-toggle" aria-pressed="true" title="Toggle background particles">
+              <span class="rr-bg-toggle__icon" aria-hidden="true"></span>
+              <span class="rr-bg-toggle__label">Toggle background effect</span>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="../scripts/rr_background.js"></script>
+    <script src="../scripts/rr_bg_toggle.js"></script>
+  </body>
+</html>
