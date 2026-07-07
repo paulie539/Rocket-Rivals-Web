@@ -55,7 +55,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
             item.label === 'Schedule' ? (
               <span class="rr-nav-schedule-wrapper">
                 <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
-                <div id="rr-live-status" aria-live="polite" aria-atomic="true"></div>
+                <a id="rr-live-status" aria-live="polite" aria-atomic="true" target="_blank" rel="noopener noreferrer"></a>
               </span>
             ) : (
               <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
@@ -87,5 +87,6 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
     <script src="../scripts/rr_background.js"></script>
     <script src="../scripts/rr_bg_toggle.js"></script>
+    <script src="../scripts/live_status.js"></script>
   </body>
 </html>

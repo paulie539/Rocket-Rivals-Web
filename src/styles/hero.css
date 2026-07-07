@@ -77,6 +77,57 @@
   color: #e5e7eb;
 }
 
+/* ── Schedule nav link: Twitch "LIVE" badge ── */
+.rr-nav-schedule-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#rr-live-status {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.4rem;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ef4444;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.12);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+#rr-live-status.is-live {
+  display: inline-flex;
+}
+
+#rr-live-status:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.22);
+}
+
+#rr-live-status.is-live::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: rrLivePulse 1.6s ease-in-out infinite;
+}
+
+@keyframes rrLivePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.8); }
+}
+
 /* ── Discord button ── */
 .discord-button,
 .hero-nav a.discord-button {
