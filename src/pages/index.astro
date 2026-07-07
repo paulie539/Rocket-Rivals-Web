@@ -59,25 +59,25 @@ const merchSlides = [
     </header>
 
     <div class="rr-carousel">
-      <div class="rr-carousel__viewport">
-        <div class="rr-carousel__track">
-          {merchSlides.map((slide) => (
-            <div class="rr-carousel__slide">
-              <a href={slide.href} target="_blank" rel="noopener noreferrer">
-                <Image src={slide.src} alt={slide.alt} loading="lazy" />
-              </a>
-            </div>
-          ))}
+      <div class="rr-carousel__stage">
+        <div class="rr-carousel__viewport">
+          <div class="rr-carousel__track">
+            {merchSlides.map((slide) => (
+              <div class="rr-carousel__slide">
+                <a href={slide.href} target="_blank" rel="noopener noreferrer">
+                  <Image src={slide.src} alt={slide.alt} loading="lazy" />
+                </a>
+              </div>
+            ))}
+          </div>
+          <div class="rr-carousel__progress">
+            <div class="rr-carousel__progress-bar">&nbsp;</div>
+          </div>
         </div>
-        <div class="rr-carousel__progress">
-          <div class="rr-carousel__progress-bar">&nbsp;</div>
-        </div>
-      </div>
 
-      <p>
         <button class="rr-carousel__arrow rr-carousel__arrow--prev" type="button" aria-label="Previous" data-tooltip="Previous" data-tooltip-pos="above">&larr;</button>
         <button class="rr-carousel__arrow rr-carousel__arrow--next" type="button" aria-label="Next" data-tooltip="Next" data-tooltip-pos="above">&rarr;</button>
-      </p>
+      </div>
 
       <div class="rr-carousel__dots">
         {merchSlides.map((_, i) => (

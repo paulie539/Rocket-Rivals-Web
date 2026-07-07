@@ -48,8 +48,11 @@
 /* ── Carousel track ── */
 
 .rr-carousel {
-  position: relative;
   user-select: none;
+}
+
+.rr-carousel__stage {
+  position: relative;
 }
 
 .rr-carousel__viewport {
