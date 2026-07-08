@@ -33,9 +33,8 @@
     btn.querySelector('.rr-bg-toggle__label').textContent = 'Background Effect';
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // astro:page-load fires after the first load AND after every client-side
+  // navigation the ClientRouter performs, so this replaces the old
+  // readyState/DOMContentLoaded check (which only ever fires once).
+  document.addEventListener('astro:page-load', init);
 })();

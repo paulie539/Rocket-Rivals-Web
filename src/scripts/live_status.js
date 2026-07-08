@@ -12,13 +12,18 @@
 
   var CHANNELS = ['Rocket_Rivals', 'Rocket_Rivals_Alt', 'ayjjake']; // The current list of channels that will trigger the live badge
   var POLL_INTERVAL_MS = 60000;
+  var pollId = null;
 
   function init() {
     var badge = document.getElementById('rr-live-status');
     if (!badge) return;
 
     checkAll(badge);
-    setInterval(function () {
+
+    // Clear any interval from a previous astro:page-load — otherwise every
+    // client-side navigation stacks another Twitch API call on top of the previous ones (poll trigger)
+    clearInterval(pollId);
+    pollId = setInterval(function () {
       checkAll(badge);
     }, POLL_INTERVAL_MS);
   }
@@ -64,9 +69,8 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // astro:page-load fires after the first load AND after every client-side
+  // navigation the ClientRouter performs, so this replaces the old
+  // readyState/DOMContentLoaded check (which only ever fires once).
+  document.addEventListener('astro:page-load', init);
 })();
