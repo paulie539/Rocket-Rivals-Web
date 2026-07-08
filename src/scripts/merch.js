@@ -3,7 +3,14 @@
 
   var INTERVAL = 4000; // ms between auto-advances
 
-  document.addEventListener('DOMContentLoaded', function () {
+  // astro:page-load fires after the first load AND after every client-side
+  // navigation the ClientRouter performs, so this replaces DOMContentLoaded
+  // (which only ever fires once). The carousel markup itself is swapped in
+  // fresh on every navigation (it's page-specific slot content, not part of
+  // the persistent layout), so each run gets its own clean carousel(s) —
+  // startTimer()'s own clearInterval(timer) on line 53 already guards
+  // against duplicate timers within a single run.
+  document.addEventListener('astro:page-load', function () {
     var carousels = document.querySelectorAll('.rr-carousel');
     carousels.forEach(initCarousel);
   });
