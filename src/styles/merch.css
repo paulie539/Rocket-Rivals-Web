@@ -105,6 +105,10 @@
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
+.rr-carousel__arrow[data-tooltip] {
+  position: absolute;
+}
+
 .rr-carousel__arrow:hover {
   border-color: #c084fc;
   background: rgba(192, 132, 252, 0.15);
