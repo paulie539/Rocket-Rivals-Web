@@ -1,5 +1,9 @@
-/* ── Hero: site logo (top-left) ── */
-.hero-logo {
+/* ── Hero: site logo (top-left) ──
+   Selector includes [data-tooltip] to out-specificity the tooltip
+   component's own `[data-tooltip] { position: relative }` (global.css) —
+   otherwise this only wins by being later in file-import order, which is
+   fragile (e.g. broke silently under dev-server HMR). */
+.hero-logo[data-tooltip] {
   position: absolute;
   top: 1.5rem;
   left: 2rem;
