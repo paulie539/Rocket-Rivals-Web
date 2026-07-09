@@ -262,6 +262,41 @@
   filter: brightness(1.25);
 }
 
+/* ── Entrance animation: sequential "reading order" reveal ──
+   One continuous sequence for the whole page: Challengers icon, then its
+   3 ranks, THEN Legends icon, then its 2 ranks, THEN Titans icon, then its
+   2 ranks. Reuses the cardIn keyframes (global.css) with its own timing —
+   duration/easing live here, independent of the homepage cards' speed.
+
+   Each element fades over 0.38s; each starts 0.28s after the previous one
+   (9 gaps × 0.28s + 0.38s = 2.9s total) — same ~72% overlap ratio as
+   before, scaled down to land the whole sequence at exactly 2.9s.
+
+   Explicit per-division selectors (rather than one shared nth-child rule)
+   are required because a true cross-card sequence can't be expressed with
+   nth-child alone — it only counts siblings within one parent, and
+   Challengers/Legends/Titans are three separate parents. nth-child
+   indexing within each is still safe because .division-card__ranks::before
+   is a ::before pseudo-element, not a real DOM child, so it doesn't shift
+   span numbering. */
+.division-card__icon,
+.division-card__ranks span[data-tooltip] {
+  animation: cardIn 0.38s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.division-card--challengers .division-card__icon { animation-delay: 0s; }
+.division-card--challengers .division-card__ranks span[data-tooltip]:nth-child(1) { animation-delay: 0.28s; }
+.division-card--challengers .division-card__ranks span[data-tooltip]:nth-child(2) { animation-delay: 0.56s; }
+.division-card--challengers .division-card__ranks span[data-tooltip]:nth-child(3) { animation-delay: 0.84s; }
+
+.division-card--legends .division-card__icon { animation-delay: 1.12s; }
+.division-card--legends .division-card__ranks span[data-tooltip]:nth-child(1) { animation-delay: 1.4s; }
+.division-card--legends .division-card__ranks span[data-tooltip]:nth-child(2) { animation-delay: 1.68s; }
+
+.division-card--titans .division-card__icon { animation-delay: 1.96s; }
+.division-card--titans .division-card__ranks span[data-tooltip]:nth-child(1) { animation-delay: 2.24s; }
+.division-card--titans .division-card__ranks span[data-tooltip]:nth-child(2) { animation-delay: 2.52s; }
+
 /* ── Mobile: stack icon above rank range ── */
 @media (max-width: 600px) {
   .division-card {

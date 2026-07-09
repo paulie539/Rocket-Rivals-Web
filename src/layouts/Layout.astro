@@ -61,7 +61,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
 
     <div id="page-wrapper">
-      <header id="header" role="banner">
+      <header id="header" role="banner" transition:animate="none">
         <div class="hero-logo" data-tooltip="Return to Home">
           <a href="/" rel="home" title="Rocket Rivals">
             <Image src={logo} alt="Rocket Rivals" width={200} />

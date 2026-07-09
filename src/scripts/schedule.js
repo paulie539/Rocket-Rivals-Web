@@ -2,28 +2,8 @@
   'use strict';
 
   // astro:page-load fires after the first load AND after every client-side
-  // navigation the ClientRouter performs. Both the Twitch lazy-load and the
-  // tab logic now live inside it — previously the Twitch lazy-load ran at
-  // the top level (once per hard page load only), which would never re-run
-  // after navigating away from /schedule and back via the router.
+  // navigation the ClientRouter performs.
   document.addEventListener('astro:page-load', function () {
-    // Lazy-load the Twitch embed when it scrolls into view.
-    var twitchWrapper = document.querySelector('[data-twitch-src]');
-    if (twitchWrapper) {
-      var observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          var iframe = document.createElement('iframe');
-          iframe.src = twitchWrapper.dataset.twitchSrc + '&parent=' + window.location.hostname;
-          iframe.frameBorder = '0';
-          iframe.allowFullscreen = true;
-          iframe.scrolling = 'no';
-          twitchWrapper.appendChild(iframe);
-          observer.disconnect();
-        }
-      }, { threshold: 0.1 });
-      observer.observe(twitchWrapper);
-    }
-
     var tabs   = document.querySelectorAll('.rr-tab-btn');
     var panels = document.querySelectorAll('.rr-schedule-panel');
 

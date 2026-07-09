@@ -102,16 +102,7 @@
   color: rgba(229, 231, 235, 0.45);
 }
 
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* cardIn keyframes now live in global.css, shared with divisions.css */
 
 /* ── Mobile ── */
 
