@@ -1,0 +1,196 @@
+/* ══════════════════════════════════════════
+   LIVE STATS PAGE — Experimental ballchasing table
+   ══════════════════════════════════════════ */
+
+/* Fading gradient rule used to separate the "League Statistics" and
+   "Live Stats" sections on the stats page — more breathing room than a
+   plain <hr>, and it tapers instead of cutting a hard line across. */
+.rr-section-divider {
+  height: 1px;
+  margin: 4rem 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(168, 85, 247, 0.5) 20%,
+    rgba(212, 175, 55, 0.6) 50%,
+    rgba(168, 85, 247, 0.5) 80%,
+    transparent
+  );
+  border: none;
+}
+
+.rr-livestats-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.rr-livestats-badge:hover {
+  background: rgba(249, 115, 22, 0.4);
+  color: #fff;
+  text-decoration: none;
+}
+
+.rr-livestats-intro {
+  color: rgba(229, 231, 235, 0.65);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.rr-livestats-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.rr-livestats-filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(229, 231, 235, 0.65);
+  font-size: 0.85rem;
+}
+
+.rr-livestats-filters select {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.rr-livestats-filters select:focus {
+  outline: none;
+  border-color: #a855f7;
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+}
+
+.rr-livestats-filters select option {
+  background: #1a0a2e;
+  color: #e5e7eb;
+}
+
+.rr-livestats-search {
+  margin-bottom: 1.5rem;
+}
+
+.rr-livestats-search input {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3f4f6;
+  font-size: 0.85rem;
+}
+
+.rr-livestats-search input::placeholder {
+  color: rgba(229, 231, 235, 0.4);
+}
+
+.rr-livestats-search input:focus {
+  outline: none;
+  border-color: #c084fc;
+  box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.2);
+}
+
+.rr-table-wrapper {
+  max-width: 100%;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rr-stats-table {
+  display: none;
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.rr-stats-table[data-visible="true"] {
+  display: table;
+}
+
+.rr-stats-table th,
+.rr-stats-table td {
+  padding: 0.65rem 1rem;
+  text-align: right;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rr-stats-table th:nth-child(1),
+.rr-stats-table td:nth-child(1) {
+  text-align: left;
+}
+
+.rr-stats-table thead th {
+  position: sticky;
+  top: 0;
+  background: #12081f;
+  color: rgba(229, 231, 235, 0.75);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+}
+
+.rr-stats-table thead th:hover {
+  color: #f3f4f6;
+}
+
+.rr-stats-table thead th.is-sorted {
+  color: #c084fc;
+}
+
+.rr-stats-table th:nth-child(1),
+.rr-stats-table td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  min-width: 200px;
+  background: #0e0820;
+}
+
+.rr-stats-table thead th:nth-child(1) {
+  z-index: 3;
+  background: #12081f;
+}
+
+.rr-stats-table tbody tr:nth-child(odd) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rr-stats-table tbody tr:nth-child(odd) td:nth-child(1) {
+  background: #100923;
+}
+
+.rr-stats-table tbody tr:hover td {
+  background: rgba(192, 132, 252, 0.06);
+}
+
+.rr-stats-table tbody tr:hover td:nth-child(1) {
+  background: rgba(192, 132, 252, 0.1);
+}
+
+.rr-stats-table tbody tr.is-hidden {
+  display: none;
+}
