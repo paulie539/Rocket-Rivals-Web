@@ -168,6 +168,7 @@
   left: 0;
   min-width: 200px;
   background: #0e0820;
+  z-index: 1;
 }
 
 .rr-stats-table thead th:nth-child(1) {
