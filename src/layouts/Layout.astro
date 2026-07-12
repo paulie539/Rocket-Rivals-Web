@@ -13,9 +13,10 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  noindex?: boolean;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, noindex } = Astro.props;
 
 const pageTitle = `${title} | Rocket Rivals`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -42,6 +43,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalURL} />
     <title>{pageTitle}</title>
 
