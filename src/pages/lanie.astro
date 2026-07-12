@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import '../styles/lanie.css';
+
+const heartCount = 18;
+const hearts = Array.from({ length: heartCount }, (_, i) => i);
+---
+<Layout
+  title="I Love Lanie"
+  description="A little love note for Lanie."
+  noindex
+>
+  <div class="lanie-hero">
+    <div class="lanie-hearts" aria-hidden="true">
+      {hearts.map((i) => (
+        <span class="lanie-heart">&#10084;</span>
+      ))}
+    </div>
+
+    <div class="lanie-content">
+      <span class="lanie-sparkle lanie-sparkle--1" aria-hidden="true">&#10022;</span>
+      <span class="lanie-sparkle lanie-sparkle--2" aria-hidden="true">&#10022;</span>
+      <span class="lanie-sparkle lanie-sparkle--3" aria-hidden="true">&#10022;</span>
+
+      <div class="lanie-heart-icon" aria-hidden="true">&#10084;</div>
+
+      <h1 class="lanie-title">I&nbsp;Love&nbsp;Lanie</h1>
+      <p class="lanie-subtitle">Now &amp; always. &#10084;</p>
+    </div>
+  </div>
+</Layout>
