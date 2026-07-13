@@ -30,7 +30,7 @@
   function applyState(btn, enabled) {
     btn.classList.toggle('is-off', !enabled);
     btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-    btn.querySelector('.rr-bg-toggle__label').textContent = 'Background Effect';
+    btn.querySelector('.rr-bg-toggle__label').textContent = 'Background Effects';
   }
 
   // astro:page-load fires after the first load AND after every client-side
