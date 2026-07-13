@@ -58,11 +58,34 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL} />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LV35PJEETF"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LV35PJEETF', {
+        send_page_view: false
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+          page_path: window.location.pathname + window.location.search,
+        });
+      });
+    </script>
   </head>
+
+
+
   <body>
     <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
 
     <div id="page-wrapper">
+      <slot name="backdrop" />
+
       <header id="header" role="banner" transition:animate="none">
         <div class="hero-logo" data-tooltip="Return to Home">
           <a href="/" rel="home" title="Rocket Rivals">
@@ -102,7 +125,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
           <div class="rr-footer__toggle">
             <button id="rr-bg-toggle" class="rr-bg-toggle" aria-pressed="true" title="Toggle background particles">
               <span class="rr-bg-toggle__icon" aria-hidden="true"></span>
-              <span class="rr-bg-toggle__label">Toggle background effect</span>
+              <span class="rr-bg-toggle__label">Toggle background effects</span>
             </button>
           </div>
         </div>

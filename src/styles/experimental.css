@@ -1,0 +1,185 @@
+/* ══════════════════════════════════════════
+   BACKDROP FX — Octanes streaking up from the
+   bottom of the screen to the top at fixed
+   angles, behind the page content.
+
+   Rendered through Layout.astro's "backdrop"
+   slot (a sibling of <main>, not a child of
+   .stack) so it doesn't add stray spacing to
+   the real content, and sits at z-index: -1
+   inside #page-wrapper so it paints behind
+   <main> but is still above the particle
+   background canvas (which lives outside
+   #page-wrapper entirely, at the document root).
+
+   Positioned absolute (against #page-wrapper,
+   which spans the full document height), not
+   fixed — the cars aren't locked to the
+   viewport, so page scroll adds directly to
+   their own climb and they read as flying
+   faster the moment the user scrolls.
+
+   .rr-fx-layer sizes itself to exactly match
+   #page-wrapper (inset: 0) and clips (overflow:
+   hidden) anything positioned outside that box.
+   Without it, a car parked below the page's
+   actual bottom edge (its off-screen spawn
+   point) still counts toward the document's
+   scrollable area — even with overflow: visible
+   on every ancestor, an absolutely-positioned
+   descendant that extends past its container
+   still expands the page's scroll height. The
+   clip keeps the page's real scroll length
+   exactly what the content needs, and simply
+   hides each car until its animated position
+   re-enters that box.
+   ══════════════════════════════════════════ */
+
+.rr-fx-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.rr-fx-car {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* Set per-car, per page load by experimental.js (Math.random() * 10deg).
+     The 0deg fallback covers the instant before that script runs, and
+     JS-disabled visits, where the car just sits at its plain atan2 angle. */
+  --rr-fx-jitter: 0deg;
+  /* Everything else (--rr-fx-dx/dy, --rr-fx-flip, --rr-fx-jitter-sign,
+     --rr-fx-start-x/start-margin/end-x/end-y, --rr-fx-duration/delay) is
+     set inline per instance, generated from the octaneCars array in
+     experimental.astro — one rule + one @keyframes block here covers
+     all four cars instead of four hand-duplicated copies of each. */
+  transform:
+    translate(-50%, -50%)
+    rotate(calc(atan2(var(--rr-fx-dy), var(--rr-fx-dx)) + var(--rr-fx-jitter) * var(--rr-fx-jitter-sign)))
+    scaleY(var(--rr-fx-flip));
+  animation-name: rrFxFly;
+  animation-duration: var(--rr-fx-duration);
+  animation-delay: var(--rr-fx-delay);
+  animation-timing-function: var(--rr-fx-ease);
+  animation-iteration-count: infinite;
+  /* Without this, a car sits at the plain (non-animated) left:0;top:0
+     above — the very top-left corner — for the entire animation-delay
+     before its first cycle starts, instead of holding at rrFxFly's own
+     0% position (off-screen, opacity: 0). backwards fill makes it hold
+     the 0% keyframe through the delay instead. */
+  animation-fill-mode: backwards;
+  will-change: left, top;
+}
+
+.rr-fx-car__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+}
+
+/* Boost flame, trailing behind the nose (opposite the direction of
+   travel) — stays correct for any rotation applied to .rr-fx-car since
+   it's positioned relative to the car's own (unrotated) local axis. */
+.rr-fx-car__trail {
+  position: absolute;
+  right: 96%;
+  top: 50%;
+  width: 42px;
+  height: 9px;
+  margin-top: -1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.85) 60%, rgba(255, 215, 0, 0.95));
+  filter: blur(2px);
+  animation: rrFxFlicker 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes rrFxFlicker {
+  from { opacity: 0.6; transform: scaleX(0.85); }
+  to   { opacity: 1;   transform: scaleX(1.1); }
+}
+
+/* ── Flight paths ──
+   One rule (.rr-fx-car above) and one @keyframes block (rrFxFly below)
+   drive all four cars — the per-car specifics (start/end position, the
+   dx/dy this flight's angle is computed from, flip, jitter sign,
+   duration, delay) come in as CSS custom properties set inline per
+   element, generated from the octaneCars array in experimental.astro.
+   Previously this was four hand-duplicated copies of both; editing a
+   flight path now means editing one row of that array instead of
+   keeping a CSS rule and a @keyframes block in sync by hand.
+
+   Position is only ever set at 0%/100% below, so the whole climb is one
+   continuous curve with no mid-flight stutter — --rr-fx-ease then shapes
+   that single curve into a quick launch (most of the speed is reached in
+   roughly the first third) that flattens out into a near-constant cruise
+   for the rest of the climb, rather than continuing to accelerate all
+   the way to the top. Pairs with each car's `duration` in
+   experimental.astro, which is derived from that car's own flight
+   distance divided by one shared RR_FX_TOP_SPEED — the curve alone only
+   shapes progress-over-time, not real speed, so without matching
+   duration-to-distance too, cars covering different distances in
+   different times would still end up cruising at different real speeds
+   even under the identical curve. Together the two keep the top-of-climb
+   speed the same across all four cars.
+
+   The rotate() angle (on .rr-fx-car, above) is computed with CSS's
+   native atan2() straight from each car's own --rr-fx-dx/--rr-fx-dy —
+   NOT hand-converted to degrees, because 1vh and 1vw are different pixel
+   amounts on any non-square viewport. Doing the atan2 in raw vh/vw
+   numbers (like a plain math atan2 would) skews the angle by the
+   viewport's aspect ratio; letting the browser resolve vh/vw to real
+   pixels first (which is what atan2() does with length arguments) is
+   what actually matches the on-screen trajectory, on any viewport, live.
+   --rr-fx-jitter then adds a small random lean on top — a fresh angle in
+   [0, 10]deg per car, per page load (see experimental.js), signed by
+   --rr-fx-jitter-sign so it always tips the nose toward vertical rather
+   than exaggerating whichever way that car is already leaning.
+
+   --rr-fx-flip feeds scaleY() directly (1 or -1): flipping the sprite
+   over its roof/wheels axis changes which end of the silhouette reads
+   as the front, so the same rotation that makes one car look like it's
+   flying forwards makes a flipped one look like it's backwards.
+
+   Opacity ramps in/out only at the very start/end of the keyframe set,
+   which doesn't add extra position keyframes and so doesn't disturb the
+   single accelerating curve.
+
+   The 0% keyframe's top is --rr-fx-start-margin ABOVE 100% (the bottom
+   edge of #page-wrapper, i.e. wherever the page actually ends), not a
+   flat vh number measured from the document's top. A flat vh start is
+   only off-screen by accident, on a page that happens to be taller than
+   that number — scroll far enough on a shorter page and you'd catch the
+   car spawning mid-page. Anchoring to 100% guarantees the spawn point is
+   beyond the last scrollable pixel on any page. */
+
+:root {
+  --rr-fx-ease: cubic-bezier(.13,.76,.89,1.45);
+}
+
+@keyframes rrFxFly {
+  0%   { left: var(--rr-fx-start-x); top: calc(100% + var(--rr-fx-start-margin)); opacity: 0; }
+  6%   { opacity: 0.9; }
+  94%  { opacity: 0.9; }
+  100% { left: var(--rr-fx-end-x); top: var(--rr-fx-end-y); opacity: 0; }
+}
+
+/* ── Mobile: skip it, content is already tight on small screens ── */
+/*
+@media (max-width: 640px) {
+  .rr-fx-car {
+    display: none;
+  }
+}
+ */
+
+/* ── Respect reduced-motion preference ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-fx-car {
+    display: none !important;
+  }
+}
