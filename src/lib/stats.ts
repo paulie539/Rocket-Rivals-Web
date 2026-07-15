@@ -49,8 +49,7 @@ export interface StatGroups {
   leagueOptions: string[];
 }
 
-// Display/default order for the league filter (Titans first). Leagues not
-// listed here (shouldn't happen, but just in case) sort alphabetically after.
+// Display/default order for the league filter (Titans first)
 const LEAGUE_ORDER = ['Titans', 'Legends', 'Challengers'];
 
 function sortLeagues(leagues: string[]): string[] {
