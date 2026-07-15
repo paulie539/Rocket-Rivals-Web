@@ -1,0 +1,266 @@
+player_id,team_id,season,role,rank
+p001,t01,Season 8,player,Champion 3
+p002,t01,Season 8,player,Champion 3
+p004,t01,Season 8,player,Champion 2
+p027,t01,Season 8,manager,
+p029,t01,Season 8,coach,
+p030,t02,Season 8,player,Champion 3
+p031,t02,Season 8,player,Champion 1
+p032,t02,Season 8,player,Champion 2
+p033,t02,Season 8,player,Champion 3
+p034,t02,Season 8,coach,
+p035,t03,Season 8,player,Champion 3
+p036,t03,Season 8,player,Champion 3
+p037,t03,Season 8,player,Champion 2
+p038,t03,Season 8,player,Champion 1
+p039,t03,Season 8,manager,
+p040,t03,Season 8,coach,
+p041,t04,Season 8,player,Champion 3
+p042,t04,Season 8,player,Champion 3
+p043,t04,Season 8,player,Champion 2
+p044,t04,Season 8,player,Champion 2
+p045,t04,Season 8,manager,
+p046,t04,Season 8,coach,
+p047,t05,Season 8,player,Champion 3
+p048,t05,Season 8,player,Champion 3
+p049,t05,Season 8,player,Champion 2
+p050,t05,Season 8,player,Champion 2
+p051,t05,Season 8,manager,
+p052,t05,Season 8,coach,
+p053,t06,Season 8,player,Champion 3
+p054,t06,Season 8,player,Champion 3
+p055,t06,Season 8,player,Champion 2
+p056,t06,Season 8,player,Champion 2
+p057,t06,Season 8,manager,
+p058,t06,Season 8,coach,
+p059,t07,Season 8,player,Champion 3
+p060,t07,Season 8,player,Champion 3
+p061,t07,Season 8,player,Champion 2
+p062,t07,Season 8,player,Champion 1
+p063,t07,Season 8,manager,
+p064,t07,Season 8,coach,
+p065,t08,Season 8,player,Champion 2
+p066,t08,Season 8,player,Champion 1
+p067,t08,Season 8,player,Champion 1
+p068,t08,Season 8,player,Champion 2
+p051,t08,Season 8,coach,
+p069,t09,Season 8,player,Champion 3
+p070,t09,Season 8,player,Champion 3
+p071,t09,Season 8,player,Champion 2
+p072,t09,Season 8,player,Champion 2
+p073,t09,Season 8,player,Champion 2
+p074,t09,Season 8,manager,
+p075,t09,Season 8,coach,
+p076,t10,Season 8,player,Champion 3
+p077,t10,Season 8,player,Champion 3
+p078,t10,Season 8,player,Champion 2
+p079,t10,Season 8,player,Champion 2
+p027,t10,Season 8,manager,
+p029,t10,Season 8,coach,
+p080,t11,Season 8,player,Champion 3
+p081,t11,Season 8,player,Champion 2
+p082,t11,Season 8,player,Champion 2
+p083,t11,Season 8,manager,
+p084,t12,Season 8,player,Champion 3
+p085,t12,Season 8,player,Champion 3
+p086,t12,Season 8,player,Champion 2
+p087,t12,Season 8,player,Champion 2
+p088,t12,Season 8,player,Champion 2
+p089,t12,Season 8,manager,
+p090,t12,Season 8,coach,
+p091,t13,Season 8,player,Champion 3
+p092,t13,Season 8,player,Champion 1
+p093,t13,Season 8,player,Champion 3
+p094,t13,Season 8,manager,
+p095,t14,Season 8,player,Champion 3
+p096,t14,Season 8,player,Champion 3
+p097,t14,Season 8,player,Champion 2
+p098,t14,Season 8,player,Champion 2
+p099,t14,Season 8,player,Champion 2
+p100,t14,Season 8,manager,
+p101,t14,Season 8,coach,
+p102,t15,Season 8,player,Champion 3
+p103,t15,Season 8,player,Champion 3
+p104,t15,Season 8,player,Champion 1
+p105,t15,Season 8,player,Champion 1
+p106,t15,Season 8,player,Champion 2
+p107,t15,Season 8,manager,
+p063,t15,Season 8,coach,
+p108,t16,Season 8,player,Grand Champion 2
+p109,t16,Season 8,player,Grand Champion 2
+p110,t16,Season 8,player,Grand Champion 1
+p111,t16,Season 8,player,Grand Champion 1
+p027,t16,Season 8,manager,
+p112,t16,Season 8,coach,
+p113,t17,Season 8,player,Grand Champion 1
+p114,t17,Season 8,player,Grand Champion 2
+p115,t17,Season 8,player,Grand Champion 2
+p027,t17,Season 8,manager,
+p112,t17,Season 8,coach,
+p116,t18,Season 8,player,Grand Champion 2
+p117,t18,Season 8,player,Grand Champion 2
+p118,t18,Season 8,player,Grand Champion 1
+p119,t18,Season 8,player,Grand Champion 1
+p120,t18,Season 8,player,Grand Champion 1
+p121,t18,Season 8,coach,
+p122,t19,Season 8,player,Grand Champion 2
+p123,t19,Season 8,player,Grand Champion 2
+p124,t19,Season 8,player,Grand Champion 1
+p125,t19,Season 8,player,Grand Champion 1
+p126,t20,Season 8,player,Grand Champion 1
+p127,t20,Season 8,player,Grand Champion 2
+p128,t20,Season 8,player,Grand Champion 2
+p129,t20,Season 8,player,Grand Champion 1
+p130,t21,Season 8,player,Grand Champion 2
+p131,t21,Season 8,player,Grand Champion 2
+p132,t21,Season 8,player,Grand Champion 1
+p133,t21,Season 8,player,Grand Champion 1
+p039,t21,Season 8,player,Grand Champion 1
+p040,t21,Season 8,manager,
+p134,t21,Season 8,coach,
+p135,t22,Season 8,player,Grand Champion 2
+p046,t22,Season 8,player,Grand Champion 2
+p136,t22,Season 8,player,Grand Champion 1
+p045,t22,Season 8,player,Grand Champion 1
+p064,t22,Season 8,manager,
+p137,t23,Season 8,player,Grand Champion 2
+p138,t23,Season 8,player,Grand Champion 2
+p139,t23,Season 8,player,Grand Champion 1
+p140,t23,Season 8,player,Grand Champion 1
+p141,t23,Season 8,player,Grand Champion 1
+p089,t23,Season 8,manager,
+p090,t23,Season 8,coach,
+p142,t24,Season 8,player,Grand Champion 2
+p143,t24,Season 8,player,Grand Champion 1
+p144,t24,Season 8,player,Grand Champion 2
+p145,t24,Season 8,player,Grand Champion 1
+p146,t24,Season 8,manager,
+p100,t25,Season 8,player,Grand Champion 2
+p057,t25,Season 8,player,Grand Champion 2
+p101,t25,Season 8,player,Grand Champion 1
+p051,t25,Season 8,player,Grand Champion 1
+p107,t25,Season 8,manager,
+p147,t25,Season 8,coach,
+p148,t26,Season 8,player,Grand Champion 2
+p149,t26,Season 8,player,Grand Champion 2
+p150,t26,Season 8,player,Grand Champion 1
+p151,t26,Season 8,player,Grand Champion 1
+p152,t26,Season 8,player,Grand Champion 1
+p153,t26,Season 8,manager,
+p153,t26,Season 8,coach,
+p063,t27,Season 8,player,Grand Champion 2
+p154,t27,Season 8,player,Grand Champion 2
+p155,t27,Season 8,player,Grand Champion 1
+p156,t27,Season 8,player,Grand Champion 1
+p157,t27,Season 8,player,Grand Champion 1
+p158,t28,Season 8,player,Grand Champion 2
+p159,t28,Season 8,player,Grand Champion 2
+p160,t28,Season 8,player,Grand Champion 1
+p083,t28,Season 8,manager,
+p161,t29,Season 8,player,Grand Champion 2
+p162,t29,Season 8,player,Grand Champion 2
+p163,t29,Season 8,player,Grand Champion 1
+p164,t29,Season 8,player,Grand Champion 1
+p134,t29,Season 8,manager,
+p165,t30,Season 8,player,Grand Champion 2
+p166,t30,Season 8,player,Grand Champion 2
+p167,t30,Season 8,player,Grand Champion 1
+p168,t30,Season 8,player,Grand Champion 1
+p169,t30,Season 8,player,Grand Champion 1
+p170,t30,Season 8,manager,
+p171,t31,Season 8,player,Grand Champion 1
+p172,t31,Season 8,player,Grand Champion 2
+p173,t31,Season 8,player,Grand Champion 2
+p174,t31,Season 8,player,Grand Champion 1
+p175,t31,Season 8,manager,
+p094,t31,Season 8,coach,
+p176,t32,Season 8,player,Grand Champion 2
+p177,t32,Season 8,player,Grand Champion 2
+p178,t32,Season 8,player,Grand Champion 1
+p179,t32,Season 8,player,Grand Champion 1
+p180,t32,Season 8,manager,
+p181,t33,Season 8,player,Grand Champion 2
+p182,t33,Season 8,player,Grand Champion 2
+p183,t33,Season 8,player,Grand Champion 1
+p184,t33,Season 8,player,Grand Champion 1
+p175,t33,Season 8,manager,
+p094,t33,Season 8,coach,
+p185,t34,Season 8,player,Grand Champion 2
+p186,t34,Season 8,player,Grand Champion 2
+p187,t34,Season 8,player,Grand Champion 1
+p188,t34,Season 8,manager,
+p189,t34,Season 8,coach,
+p190,t35,Season 8,player,Grand Champion 3
+p191,t35,Season 8,player,Supersonic Legend
+p192,t35,Season 8,player,Grand Champion 3
+p193,t35,Season 8,player,Grand Champion 3
+p027,t35,Season 8,manager,
+p112,t35,Season 8,coach,
+p188,t36,Season 8,player,Grand Champion 3
+p194,t36,Season 8,player,Supersonic Legend
+p195,t36,Season 8,player,Grand Champion 3
+p196,t36,Season 8,player,Grand Champion 3
+p107,t36,Season 8,manager,
+p051,t36,Season 8,coach,
+p197,t37,Season 8,player,Grand Champion 3
+p198,t37,Season 8,player,Supersonic Legend
+p134,t37,Season 8,player,Grand Champion 3
+p189,t37,Season 8,player,Grand Champion 3
+p199,t37,Season 8,player,Grand Champion 3
+p039,t37,Season 8,manager,
+p200,t38,Season 8,player,Grand Champion 3
+p201,t38,Season 8,player,Supersonic Legend
+p202,t38,Season 8,player,Grand Champion 3
+p122,t38,Season 8,manager,
+p203,t39,Season 8,player,Grand Champion 3
+p204,t39,Season 8,player,Supersonic Legend
+p205,t39,Season 8,player,Grand Champion 3
+p206,t40,Season 8,player,Grand Champion 3
+p207,t40,Season 8,player,Supersonic Legend
+p208,t40,Season 8,player,Grand Champion 3
+p209,t40,Season 8,player,Grand Champion 3
+p122,t40,Season 8,manager,
+p210,t41,Season 8,player,Supersonic Legend
+p211,t41,Season 8,player,Grand Champion 3
+p212,t41,Season 8,player,Grand Champion 3
+p213,t41,Season 8,player,Grand Champion 3
+p214,t41,Season 8,player,Grand Champion 3
+p215,t42,Season 8,player,Supersonic Legend
+p216,t42,Season 8,player,Grand Champion 3
+p217,t42,Season 8,player,Grand Champion 3
+p083,t42,Season 8,manager,
+p218,t43,Season 8,player,Supersonic Legend
+p219,t43,Season 8,player,Grand Champion 3
+p220,t43,Season 8,player,Grand Champion 3
+p221,t43,Season 8,player,Grand Champion 3
+p063,t43,Season 8,manager,
+p064,t43,Season 8,coach,
+p222,t44,Season 8,player,Supersonic Legend
+p223,t44,Season 8,player,Grand Champion 3
+p224,t44,Season 8,player,Grand Champion 3
+p225,t45,Season 8,player,Supersonic Legend
+p226,t45,Season 8,player,Grand Champion 3
+p227,t45,Season 8,player,Grand Champion 3
+p228,t45,Season 8,player,Grand Champion 3
+p229,t45,Season 8,player,Grand Champion 3
+p170,t45,Season 8,manager,
+p175,t46,Season 8,player,Grand Champion 3
+p230,t46,Season 8,player,Supersonic Legend
+p231,t46,Season 8,player,Grand Champion 3
+p232,t46,Season 8,player,Grand Champion 3
+p233,t46,Season 8,manager,
+p234,t47,Season 8,player,Supersonic Legend
+p235,t47,Season 8,player,Grand Champion 3
+p052,t47,Season 8,player,Grand Champion 3
+p236,t47,Season 8,player,Grand Champion 3
+p027,t47,Season 8,manager,
+p112,t47,Season 8,coach,
+p094,t48,Season 8,player,Grand Champion 3
+p237,t48,Season 8,player,Supersonic Legend
+p238,t48,Season 8,player,Grand Champion 3
+p239,t48,Season 8,player,Grand Champion 3
+p233,t48,Season 8,manager,
+p040,t49,Season 8,player,Grand Champion 3
+p240,t49,Season 8,player,Grand Champion 3
+p241,t49,Season 8,player,Supersonic Legend
+p039,t49,Season 8,manager,
