@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/divisions.css';
+import { DIVISIONS, type DivisionConfig } from '../../site.config';
+import { STATS_SHEETS } from '../../data/statsSheets';
+
+export function getStaticPaths() {
+  return DIVISIONS.map((division) => ({
+    params: { division: division.id },
+    props: { division },
+  }));
+}
+
+const { division } = Astro.props as { division: DivisionConfig };
+const sheets = STATS_SHEETS[division.id];
+
+const description = sheets.length > 1
+  ? `Season-by-season stat sheets for the Rocket Rivals ${division.label} division, from ${sheets[sheets.length - 1].season} through ${sheets[0].season}.`
+  : `${sheets[0].season} stat sheet for the Rocket Rivals ${division.label} division.`;
+---
+
+<Layout
+  title={`Stats: ${division.label}`}
+  description={description}
+>
+  <div>
+    <h1>Stats: {division.label}</h1>
+    <hr />
+    <div class={`${division.id}-link`}>
+      {sheets.map((sheet) => (
+        <h2><a href={sheet.url}>{sheet.season}</a></h2>
+      ))}
+    </div>
+    <p><br /><br />&nbsp;</p>
+    <nav class="return-stats">
+      <p><a href="/stats">&lt;-- Back to stats</a></p>
+    </nav>
+  </div>
+</Layout>

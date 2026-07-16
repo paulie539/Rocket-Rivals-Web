@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { getDivision } from '../site.config';
 
 import '../styles/cards.css';
 import '../styles/divisions.css';
@@ -29,7 +30,7 @@ import ssl from '../assets/images/SSLicon.png';
 
   <div class="division-card division-card--challengers">
     <div class="division-card__icon">
-      <a href="https://discord.gg/8M6HYuqaRB" title="Join The Challengers Discord!">
+      <a href={getDivision('challengers').discordInvite} title="Join The Challengers Discord!">
         <Image class="esports-card" src={challengersIcon} alt="Join The Challengers Discord!" width={450} height={450} />
       </a>
     </div>
@@ -42,7 +43,7 @@ import ssl from '../assets/images/SSLicon.png';
 
   <div class="division-card division-card--legends">
     <div class="division-card__icon">
-      <a href="https://discord.gg/4VsVf5BSQ8" title="Join The Legends Discord!">
+      <a href={getDivision('legends').discordInvite} title="Join The Legends Discord!">
         <Image class="esports-card" src={legendsIcon} alt="Join The Legends Discord!" width={450} height={450} />
       </a>
     </div>
@@ -54,7 +55,7 @@ import ssl from '../assets/images/SSLicon.png';
 
   <div class="division-card division-card--titans">
     <div class="division-card__icon">
-      <a href="https://discord.gg/KzV7czKBAk" title="Join The Titans Discord!">
+      <a href={getDivision('titans').discordInvite} title="Join The Titans Discord!">
         <Image class="esports-card" src={titansIcon} alt="Join The Titans Discord!" width={450} height={450} />
       </a>
     </div>

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { SITE } from '../site.config';
 
 import '../styles/format.css';
 import '../styles/merch.css';
@@ -34,7 +35,7 @@ const merchSlides = [
     <hr />
     <p>Rocket Rivals is a competitive Rocket League community built for players who want structured leagues, fair competition, and a place to grow.&nbsp;</p>
     <p>Whether you're here to follow the latest seasons, track team and player stats, or join the action yourself, Rocket Rivals brings everything together in one hub: competition, community, and rivalries that matter. &nbsp;</p>
-    <p>Join our <a href="https://discord.gg/bNVBfCfVpY">Discord</a>, follow our <a href="https://www.twitch.tv/rocket_rivals">Twitch</a>, and join one of our <a href="/divisions">division servers</a>!</p>
+    <p>Join our <a href={SITE.discordInvite}>Discord</a>, follow our <a href={SITE.twitchUrl}>Twitch</a>, and join one of our <a href="/divisions">division servers</a>!</p>
   </div>
 
   <div class="rr-spacer rr-spacer--sm"></div>
