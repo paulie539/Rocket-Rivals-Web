@@ -9,6 +9,14 @@
   'use strict';
 
   function init() {
+    const bnt = document.querySelector('rr-bg-toggle');
+    if (!btn || btn.dataset.toggleAttached) return;
+    btn.dataset.toggleAttached = true;
+
+    const isEnabled = localStorage.getItem('rr_bg_enabled');
+  }
+
+  function init() {
     const btn = document.getElementById('rr-bg-toggle');
     if (!btn || btn.dataset.toggleAttached) return;
     btn.dataset.toggleAttached = 'true';

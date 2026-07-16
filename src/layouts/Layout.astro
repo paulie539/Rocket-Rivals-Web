@@ -8,6 +8,7 @@ import '../styles/footer.css';
 import '../styles/rr_background.css';
 
 import logo from '../assets/images/rocketrivalsszn7_2.png';
+import { SITE } from '../site.config';
 
 interface Props {
   title: string;
@@ -18,7 +19,7 @@ interface Props {
 
 const { title, description, image, noindex } = Astro.props;
 
-const pageTitle = `${title} | Rocket Rivals`;
+const pageTitle = `${title} | ${SITE.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(image ?? logo.src, Astro.site);
 
@@ -52,19 +53,19 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
-    <meta property="og:site_name" content="Rocket Rivals" />
+    <meta property="og:site_name" content={SITE.name} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL} />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LV35PJEETF"></script>
-    <script is:inline>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaMeasurementId}`}></script>
+    <script is:inline define:vars={{ gaId: SITE.gaMeasurementId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-LV35PJEETF', {
+      gtag('config', gaId, {
         send_page_view: false
       });
 
@@ -106,7 +107,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
               <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
             )
           ))}
-          <a href="https://discord.gg/bNVBfCfVpY" class="discord-button" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
+          <a href={SITE.discordInvite} class="discord-button" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
         </nav>
       </header>
 
@@ -119,7 +120,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
       <footer id="footer" role="contentinfo">
         <div class="rr-footer__inner">
-          <span class="rr-footer__copy">&copy; 2026 Rocket Rivals. All rights reserved</span>
+          <span class="rr-footer__copy">&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved</span>
           <div class="rr-footer__toggle">
             <button id="rr-bg-toggle" class="rr-bg-toggle" aria-pressed="true" title="Toggle background particles">
               <span class="rr-bg-toggle__icon" aria-hidden="true"></span>

@@ -1,3 +1,5 @@
+import { DIVISIONS } from '../site.config';
+
 // Each folder is named "<League> Division Season <N> Statistics" and holds one
 // CSV per week (or a "Split N Overall.csv" rollup) exported from ballchasing.com.
 // import.meta.glob inlines the file contents at build time, so this doesn't
@@ -49,8 +51,8 @@ export interface StatGroups {
   leagueOptions: string[];
 }
 
-// Display/default order for the league filter (Titans first)
-const LEAGUE_ORDER = ['Titans', 'Legends', 'Challengers'];
+// Display/default order for the league filter, taken from the division config
+const LEAGUE_ORDER = DIVISIONS.map((division) => division.label);
 
 function sortLeagues(leagues: string[]): string[] {
   return [...leagues].sort((a, b) => {

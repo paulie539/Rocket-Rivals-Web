@@ -1,12 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { DIVISIONS, SITE, type DivisionId } from '../site.config';
 
 import '../styles/schedule.css';
 
 import titansSchedule from '../assets/images/rocketrivalsszn8titansschedule.png';
 import legendsSchedule from '../assets/images/rocketrivalsszn8legendsschedule.png';
 import challengersSchedule from '../assets/images/rocketrivalsszn8challengersschedule.png';
+
+// Static asset imports must be literal paths, so this map is the one place
+// that still has to be updated by hand when a season's schedule images change.
+const scheduleImages: Record<DivisionId, ImageMetadata> = {
+  titans: titansSchedule,
+  legends: legendsSchedule,
+  challengers: challengersSchedule,
+};
+
+const twitchParent = new URL(SITE.url).hostname;
 ---
 
 <Layout
@@ -18,11 +29,11 @@ import challengersSchedule from '../assets/images/rocketrivalsszn8challengerssch
   </div>
 
   <div class="rr-twitch-panel">
-    <p><a href="https://www.twitch.tv/rocket_rivals">Rocket Rivals on Twitch</a></p>
+    <p><a href={SITE.twitchUrl}>{SITE.name} on Twitch</a></p>
     <div class="twitch-embed-wrapper">
       <iframe
-        src="https://player.twitch.tv/?channel=Rocket_Rivals&parent=rocketrivals.org&parent=localhost"
-        title="Rocket Rivals Twitch stream"
+        src={`https://player.twitch.tv/?channel=${SITE.twitchChannel}&parent=${twitchParent}&parent=localhost`}
+        title={`${SITE.name} Twitch stream`}
         allowfullscreen
         loading="lazy"
       ></iframe>
@@ -33,20 +44,16 @@ import challengersSchedule from '../assets/images/rocketrivalsszn8challengerssch
   <div class="rr-schedule-wrapper">
     <p class="rr-schedule-intro">Matches are played on Saturday and Sunday evenings &mdash; all times Eastern.</p>
     <div class="rr-division-tabs">
-      <button type="button" class="rr-tab-btn" data-division="titans">Titans</button>
-      <button type="button" class="rr-tab-btn" data-division="legends">Legends</button>
-      <button type="button" class="rr-tab-btn" data-division="challengers">Challengers</button>
+      {DIVISIONS.map((division) => (
+        <button type="button" class="rr-tab-btn" data-division={division.id}>{division.label}</button>
+      ))}
     </div>
     <div class="rr-schedule-panels">
-      <div class="rr-schedule-panel" data-division="titans">
-        <Image src={titansSchedule} alt="Titans Division Schedule" width={750} height={420} loading="lazy" />
-      </div>
-      <div class="rr-schedule-panel" data-division="legends">
-        <Image src={legendsSchedule} alt="Legends Division Schedule" width={750} height={420} loading="lazy" />
-      </div>
-      <div class="rr-schedule-panel" data-division="challengers">
-        <Image src={challengersSchedule} alt="Challengers Division Schedule" width={750} height={420} loading="lazy" />
-      </div>
+      {DIVISIONS.map((division) => (
+        <div class="rr-schedule-panel" data-division={division.id}>
+          <Image src={scheduleImages[division.id]} alt={`${division.label} Division Schedule`} width={750} height={420} loading="lazy" />
+        </div>
+      ))}
     </div>
   </div>
 </Layout>

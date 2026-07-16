@@ -4,6 +4,7 @@ import '../../styles/divisions.css';
 import '../../styles/livestats.css';
 
 import { loadStatGroups } from '../../lib/stats';
+import { DIVISIONS } from '../../site.config';
 
 const columns = [
   { label: 'Player Name', type: 'string' },
@@ -38,9 +39,9 @@ const defaultLeague = leagueOptions[0];
     <label for="division-select">Select Division: </label>
     <select id="division-select" onchange="location = this.value;">
       <option value="#">-- None --</option>
-      <option value="/stats/titans">Titans</option>
-      <option value="/stats/legends">Legends</option>
-      <option value="/stats/challengers">Challengers</option>
+      {DIVISIONS.map((division) => (
+        <option value={`/stats/${division.id}`}>{division.label}</option>
+      ))}
     </select>
   </p>
   <div class="rr-spacer rr-spacer--md"></div>
