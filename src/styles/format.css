@@ -113,3 +113,284 @@
     margin: 0 auto;
   }
 }
+
+/* ══════════════════════════════════════════
+   LIVE STREAMING & EVENTS BLOCK — season roadmap
+   Shares .rr-format__intro / __title / __body with
+   the League Format block above it.
+
+   Two layers of meaning, kept deliberately separate:
+   — TYPE (kind: span/live/finale) always colours the
+     tag chip: purple = a season stretch, orange = a
+     broadcast event, pink = the finale.
+   — PROGRESS (status: upcoming/active/done) drives the
+     marker itself in RR gold (#d4af37), lit by the
+     .rr-timeline__progress fill. Update site.config.ts's
+     CURRENT_SEASON_STAGE as the season moves and every
+     marker up to it relights automatically.
+
+   The active pulse reuses #rr-live-status's rrLivePulse
+   keyframes (hero.css) so "happening right now" reads the
+   same way it does in the nav bar.
+   ══════════════════════════════════════════ */
+
+.rr-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem 0;
+}
+
+.rr-timeline__items {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+/* Base track — the not-yet-reached portion of the season. */
+.rr-timeline__items::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+}
+
+/* Gold fill — how far the season has actually progressed.
+   Width is set inline per-item from CURRENT_SEASON_STAGE. */
+.rr-timeline__progress {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: var(--rr-progress-pct, 0%);
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), #d4af37);
+  box-shadow: 0 0 12px -1px rgba(212, 175, 55, 0.7), 0 0 3px rgba(212, 175, 55, 0.9);
+  z-index: 1;
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+/* A slow light-streak sweeping through the fill — the
+   "progress bar" reads as live/active, not a static rule. */
+.rr-timeline__progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  background-size: 50% 100%;
+  animation: rrTimelineShimmer 2.4s linear infinite;
+}
+
+@keyframes rrTimelineShimmer {
+  from { background-position: -60% 0; }
+  to   { background-position: 160% 0; }
+}
+
+.rr-timeline__item {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rr-delay, 0s);
+}
+
+.rr-timeline__marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 28px;
+}
+
+/* ── Shape by kind ──
+   Every marker pulses continuously (rrLivePulse, shared with
+   #rr-live-status in hero.css) regardless of progress status —
+   only the colour underneath it changes below. */
+
+/* Regular-season items (Split 1 / 2) are a duration, not a
+   moment — rendered as a pill spanning the line rather than
+   a point marker. */
+.rr-timeline__item--span .rr-timeline__marker::before {
+  content: '';
+  width: 60%;
+  max-width: 3rem;
+  height: 10px;
+  border-radius: 999px;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  animation: rrLivePulse 1.6s ease-in-out infinite;
+}
+
+.rr-timeline__dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  animation: rrLivePulse 1.6s ease-in-out infinite;
+}
+
+.rr-timeline__item--finale .rr-timeline__dot {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Colour by progress status ──
+   Not-yet-reached stages pulse dim in their own type colour
+   (purple/orange/pink); reached stages pulse RR gold instead. */
+
+.rr-timeline__item--span.rr-timeline__item--upcoming .rr-timeline__marker::before {
+  background: rgba(192, 132, 252, 0.14);
+  border: 1.5px dashed rgba(192, 132, 252, 0.45);
+}
+.rr-timeline__item--live.rr-timeline__item--upcoming .rr-timeline__dot {
+  background: rgba(249, 115, 22, 0.55);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+}
+.rr-timeline__item--finale.rr-timeline__item--upcoming .rr-timeline__dot {
+  background: rgba(255, 126, 179, 0.6);
+  box-shadow: 0 0 0 5px rgba(255, 126, 179, 0.18);
+}
+.rr-timeline__item--upcoming .rr-timeline__name {
+  color: rgba(229, 231, 235, 0.45);
+}
+.rr-timeline__item--upcoming .rr-timeline__tag {
+  opacity: 0.55;
+}
+
+.rr-timeline__item--done .rr-timeline__marker::before {
+  background: rgba(212, 175, 55, 0.22);
+  border: 1.5px solid #d4af37;
+}
+.rr-timeline__item--done .rr-timeline__dot {
+  background: #d4af37;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2), 0 0 10px -2px rgba(212, 175, 55, 0.6);
+}
+
+.rr-timeline__item--active .rr-timeline__marker::before {
+  background: rgba(212, 175, 55, 0.3);
+  border: 1.5px solid #d4af37;
+  box-shadow: 0 0 16px -2px rgba(212, 175, 55, 0.7);
+}
+.rr-timeline__item--active .rr-timeline__dot {
+  background: #d4af37;
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.28), 0 0 22px -2px rgba(212, 175, 55, 0.85);
+}
+.rr-timeline__item--active .rr-timeline__name {
+  color: #f3f4f6;
+}
+
+.rr-timeline__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+.rr-timeline__name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: #f3f4f6;
+  transition: color 0.4s ease;
+}
+
+.rr-timeline__item--finale .rr-timeline__name {
+  font-size: 1rem;
+  background: linear-gradient(135deg, #f97316 20%, #ff7eb3 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rr-timeline__tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(229, 231, 235, 0.55);
+  white-space: nowrap;
+  transition: opacity 0.4s ease;
+}
+
+.rr-timeline__item--span .rr-timeline__tag {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.12);
+}
+.rr-timeline__item--live .rr-timeline__tag {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.12);
+}
+.rr-timeline__item--finale .rr-timeline__tag {
+  color: #ff7eb3;
+  background: rgba(255, 126, 179, 0.14);
+}
+
+/* ── Mobile: line flips vertical, items become rows ── */
+
+@media (max-width: 640px) {
+  .rr-timeline {
+    max-width: 360px;
+  }
+
+  .rr-timeline__items {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.6rem;
+  }
+
+  .rr-timeline__items::before {
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .rr-timeline__progress {
+    top: 0;
+    left: 14px;
+    width: 2px;
+    height: var(--rr-progress-pct, 0%);
+  }
+
+  .rr-timeline__item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .rr-timeline__marker {
+    width: 28px;
+    height: 28px;
+    flex: none;
+  }
+
+  .rr-timeline__item--span .rr-timeline__marker::before {
+    width: 10px;
+    height: 60%;
+    max-width: none;
+    max-height: 2rem;
+  }
+
+  .rr-timeline__info {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 0;
+    margin-left: 0.9rem;
+  }
+}
