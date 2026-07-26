@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import { SITE } from '../site.config';
+import { SITE, SEASON_TIMELINE, CURRENT_SEASON_STAGE } from '../site.config';
 
 import '../styles/format.css';
 import '../styles/merch.css';
@@ -14,6 +14,10 @@ import merch5 from '../assets/images/rrmerch5.png';
 import merch6 from '../assets/images/rrmerch6.png';
 import merch7 from '../assets/images/rrmerch7.png';
 import merch8 from '../assets/images/rrmerch8.png';
+
+// Falls back to the first stage if CURRENT_SEASON_STAGE doesn't match a known id.
+const currentStageIndex = Math.max(0, SEASON_TIMELINE.findIndex((s) => s.id === CURRENT_SEASON_STAGE));
+const timelineProgress = ((currentStageIndex + 0.5) / SEASON_TIMELINE.length) * 100;
 
 const merchSlides = [
   { src: merch1, href: 'https://arma.gg/collections/rocket-rivals/1', alt: 'Rocket Rivals x Arma Merch 1' },
@@ -50,6 +54,39 @@ const merchSlides = [
       <div class="rr-format__card" data-accent="purple"><span class="rr-format__stat">3v3</span> <span class="rr-format__name">Team Format</span></div>
       <div class="rr-format__card" data-accent="orange"><span class="rr-format__stat">2&times;</span> <span class="rr-format__name">Per Week</span></div>
       <div class="rr-format__card" data-accent="pink"><span class="rr-format__stat">Sat / Sun</span> <span class="rr-format__name">Match Nights</span></div>
+    </div>
+  </div>
+
+  <div class="rr-spacer rr-spacer--sm"></div>
+
+  <div class="rr-format">
+    <div class="rr-format__intro">
+      <p><span class="rr-format__label">Tune In</span></p>
+      <h2 class="rr-format__title">Live Streaming &amp; Events</h2>
+      <p class="rr-format__body">The season unfolds in two stages: Split 1 → Major 1, then Split 2 → Major 2. Everything builds toward the League Championship, where the top teams face off live for the season&rsquo;s prize pool. Catch every match live on <a href={SITE.twitchUrl}>Twitch</a>.</p>
+    </div>
+    <div class="rr-timeline">
+      <div class="rr-timeline__items">
+        <div class="rr-timeline__progress" style={`--rr-progress-pct: ${timelineProgress}%`}></div>
+        {SEASON_TIMELINE.map((ev, i) => {
+          const status = i < currentStageIndex ? 'done' : i === currentStageIndex ? 'active' : 'upcoming';
+          return (
+            <div
+              class={`rr-timeline__item rr-timeline__item--${ev.kind} rr-timeline__item--${status}`}
+              style={`--rr-delay: ${i * 0.12}s`}
+              aria-current={status === 'active' ? 'step' : undefined}
+            >
+              <span class="rr-timeline__marker">
+                {ev.kind !== 'span' && <span class="rr-timeline__dot" aria-hidden="true"></span>}
+              </span>
+              <div class="rr-timeline__info">
+                <span class="rr-timeline__name">{ev.name}</span>
+                <span class="rr-timeline__tag">{ev.tag}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   </div>
 
