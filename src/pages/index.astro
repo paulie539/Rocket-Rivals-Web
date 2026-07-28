@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import { SITE, SEASON_TIMELINE, CURRENT_SEASON_STAGE } from '../site.config';
+import { SITE, SEASON_TIMELINE } from '../site.config';
 
 import '../styles/format.css';
 import '../styles/merch.css';
@@ -14,10 +14,6 @@ import merch5 from '../assets/images/rrmerch5.png';
 import merch6 from '../assets/images/rrmerch6.png';
 import merch7 from '../assets/images/rrmerch7.png';
 import merch8 from '../assets/images/rrmerch8.png';
-
-// Falls back to the first stage if CURRENT_SEASON_STAGE doesn't match a known id.
-const currentStageIndex = Math.max(0, SEASON_TIMELINE.findIndex((s) => s.id === CURRENT_SEASON_STAGE));
-const timelineProgress = ((currentStageIndex + 0.5) / SEASON_TIMELINE.length) * 100;
 
 const merchSlides = [
   { src: merch1, href: 'https://arma.gg/collections/rocket-rivals/1', alt: 'Rocket Rivals x Arma Merch 1' },
@@ -66,14 +62,13 @@ const merchSlides = [
     </div>
     <div class="rr-timeline">
       <div class="rr-timeline__items">
-        <div class="rr-timeline__progress" style={`--rr-progress-pct: ${timelineProgress}%`}></div>
+        <div class="rr-timeline__progress"></div>
         {SEASON_TIMELINE.map((ev, i) => {
-          const status = i < currentStageIndex ? 'done' : i === currentStageIndex ? 'active' : 'upcoming';
           return (
             <div
-              class={`rr-timeline__item rr-timeline__item--${ev.kind} rr-timeline__item--${status}`}
+              class={`rr-timeline__item rr-timeline__item--${ev.kind}`}
+              data-start-date={ev.startDate}
               style={`--rr-delay: ${i * 0.12}s`}
-              aria-current={status === 'active' ? 'step' : undefined}
             >
               <span class="rr-timeline__marker">
                 {ev.kind !== 'span' && <span class="rr-timeline__dot" aria-hidden="true"></span>}
@@ -129,3 +124,4 @@ const merchSlides = [
 </Layout>
 
 <script src="../scripts/merch.js"></script>
+<script src="../scripts/season_timeline.js"></script>

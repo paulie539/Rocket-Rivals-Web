@@ -125,9 +125,12 @@
      broadcast event, pink = the finale.
    — PROGRESS (status: upcoming/active/done) drives the
      marker itself in RR gold (#d4af37), lit by the
-     .rr-timeline__progress fill. Update site.config.ts's
-     CURRENT_SEASON_STAGE as the season moves and every
-     marker up to it relights automatically.
+     .rr-timeline__progress fill. Computed client-side in
+     scripts/season_timeline.js from each item's
+     data-start-date against the visitor's current date —
+     add real stage dates to SEASON_TIMELINE in
+     site.config.ts and every marker up to "now" relights
+     automatically, no manual bump required.
 
    The active pulse reuses #rr-live-status's rrLivePulse
    keyframes (hero.css) so "happening right now" reads the
