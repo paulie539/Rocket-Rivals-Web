@@ -35,19 +35,19 @@ export interface SeasonStage {
   name: string;
   tag: string;
   kind: SeasonStageKind;
+  startDate: string;
 }
 
 // Canonical season roadmap shown on the homepage "Live Streaming & Events"
 // timeline, in chronological order.
 export const SEASON_TIMELINE: SeasonStage[] = [
-  { id: 'split1', name: 'Split 1', tag: 'Regular Season', kind: 'span' },
-  { id: 'major1', name: 'Major 1', tag: 'Title Event', kind: 'live' },
-  { id: 'split2', name: 'Split 2', tag: 'Regular Season', kind: 'span' },
-  { id: 'major2', name: 'Major 2', tag: 'Title Event', kind: 'live' },
-  { id: 'lc', name: 'League Championship', tag: 'Main Event', kind: 'finale' },
-  { id: 'allstar', name: 'All Star Games', tag: 'Event', kind: 'live' },
+  { id: 'split1', name: 'Split 1', tag: 'Regular Season', kind: 'span', startDate: '2026-07-25' },
+  { id: 'major1', name: 'Major 1', tag: 'Title Event', kind: 'live', startDate: '2026-08-16' },
+  { id: 'split2', name: 'Split 2', tag: 'Regular Season', kind: 'span', startDate: '2026-09-01' },
+  { id: 'major2', name: 'Major 2', tag: 'Title Event', kind: 'live', startDate: '2026-10-05' },
+  { id: 'lc', name: 'League Championship', tag: 'Main Event', kind: 'finale', startDate: '2026-10-19' },
+  { id: 'allstar', name: 'All Star Games', tag: 'Event', kind: 'live', startDate: '2026-11-23' },
 ];
 
-// Update this as the season moves forward — every stage up to and including
-// this one lights up gold on the homepage timeline. Must match a SEASON_TIMELINE id.
-export const CURRENT_SEASON_STAGE = 'split1';
+
+
