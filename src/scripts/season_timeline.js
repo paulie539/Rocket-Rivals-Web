@@ -9,7 +9,7 @@
   // startTimer()'s own clearInterval(timer) on line 53 already guards
   // against duplicate timers within a single run.
   document.addEventListener('astro:page-load', function () {
-    const now = new Date('2026-09-20');
+    const now = new Date(); // Use custom date for testing (ex: '2026-09-20')
     var items = document.querySelectorAll('.rr-timeline__item');
     if (!items.length) return;
 
