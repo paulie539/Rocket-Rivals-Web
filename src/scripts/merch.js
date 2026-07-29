@@ -89,18 +89,12 @@
     // Pause on hover
     carousel.addEventListener('mouseenter', function () {
       paused = true;
-      /*
-
-      // When the mouse hovers, the progress bar is reset
-      if (progressBar) {
-        progressBar.style.transition = 'none';
-        progressBar.style.width = '0%';
-      }
-      */
     });
 
     carousel.addEventListener('mouseleave', function () {
       paused = false;
+      resetProgress();
+      startTimer();
     });
 
     // Touch / swipe support
