@@ -202,6 +202,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: default;
   animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--rr-delay, 0s);
 }
@@ -260,6 +261,10 @@
   box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
 }
 .rr-timeline__item--finale.rr-timeline__item--upcoming .rr-timeline__dot {
+  background: rgba(255, 126, 179, 0.6);
+  box-shadow: 0 0 0 5px rgba(255, 126, 179, 0.18);
+}
+.rr-timeline__item--group.rr-timeline__item--upcoming .rr-timeline__dot {
   background: rgba(255, 126, 179, 0.6);
   box-shadow: 0 0 0 5px rgba(255, 126, 179, 0.18);
 }
@@ -342,6 +347,10 @@
 .rr-timeline__item--live .rr-timeline__tag {
   color: #f97316;
   background: rgba(249, 115, 22, 0.12);
+}
+.rr-timeline__item--group .rr-timeline__tag {
+  color: #ff7eb3;
+  background: rgba(255, 126, 179, 0.14);
 }
 .rr-timeline__item--finale .rr-timeline__tag {
   color: #ff7eb3;

@@ -60,14 +60,20 @@ const merchSlides = [
       <h2 class="rr-format__title">Live Streaming &amp; Events</h2>
       <p class="rr-format__body">The season unfolds in two stages: Split 1 → Major 1, then Split 2 → Major 2. Everything builds toward the League Championship, where the top teams face off live for the season&rsquo;s prize pool. Catch matches live on <a href={SITE.twitchUrl}>Twitch</a>.</p>
     </div>
+    <div class="rr-spacer rr-spacer--sm"></div>
     <div class="rr-timeline">
       <div class="rr-timeline__items">
         <div class="rr-timeline__progress"></div>
         {SEASON_TIMELINE.map((ev, i) => {
+          const formatMonthDay = (d: string) =>
+            new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+          const eventDate = `${formatMonthDay(ev.actualDate)} – ${formatMonthDay(ev.actualEndDate)}`;
           return (
             <div
               class={`rr-timeline__item rr-timeline__item--${ev.kind}`}
               data-start-date={ev.startDate}
+              data-tooltip={eventDate}
+              data-tooltip-pos="above"
               style={`--rr-delay: ${i * 0.12}s`}
             >
               <span class="rr-timeline__marker">
