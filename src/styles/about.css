@@ -1,0 +1,55 @@
+/* ══════════════════════════════════════════════════
+   HALL OF FAME — plaque-style intro panel (About page)
+   Content (inductees) is populated later; this is just
+   the stylized frame + placeholder copy.
+   ══════════════════════════════════════════════════ */
+
+.hall-of-fame {
+  position: relative;
+  margin: 3rem auto 0;
+  padding: 2.5rem 2rem 2rem;
+  max-width: 640px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12) inset, 0 8px 32px rgba(212, 175, 55, 0.08);
+  animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Inset engraving line — echoes .division-card::before but as a full
+   inner frame instead of a single top edge, to read as an engraved plaque. */
+.hall-of-fame::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  right: 7px;
+  bottom: 7px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.hall-of-fame__title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #f3e5ab, #d4af37 50%, #f3e5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hall-of-fame__subtitle {
+  margin: 0;
+  color: rgba(229, 231, 235, 0.65);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 560px) {
+  .hall-of-fame {
+    padding: 2.25rem 1.25rem 1.75rem;
+  }
+}
