@@ -6,6 +6,12 @@
 /* ── Dark background & base type ── */
 body {
   margin: 0;
+  /* Safety net for full-bleed elements (e.g. .hall-of-fame__laurel's
+     100vw break-out) — 100vw/window.innerWidth include the vertical
+     scrollbar's width, so anything sized off them renders a few px
+     wider than the actual content area, which would otherwise force
+     a permanent horizontal scrollbar. */
+  overflow-x: hidden;
   background-color: #08060e;
   color: #e5e7eb;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;

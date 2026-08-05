@@ -1,7 +1,18 @@
-/* ── Canvas: fixed, full-screen, behind all page content ── */
+/* ── Canvas: absolute, full-page, behind all page content ──
+   position: absolute (not fixed) anchors this to the document rather
+   than the viewport — it's a child of <body>, which has no positioned
+   ancestor of its own, so its containing block is the initial
+   containing block (the document root), not the always-visible
+   viewport window. Combined with canvas.height being set to the full
+   page height in rr_background.js (rather than window.innerHeight),
+   this makes the particle field scroll away with the page instead of
+   staying pinned as you scroll — the top: 0 here means top of the
+   document, not top of the viewport. */
 #bg-canvas {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 0;
   pointer-events: none;
   display: block;
