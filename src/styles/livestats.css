@@ -38,6 +38,7 @@
   background: rgba(249, 115, 22, 0.4);
   color: #fff;
   text-decoration: none;
+  cursor: default;
 }
 
 .rr-livestats-intro {

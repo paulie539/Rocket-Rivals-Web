@@ -23,19 +23,36 @@
   let rafId = null;
   let listenersAttached = false;
 
+  // Full document height, not just the viewport — the canvas now
+  // scrolls with the page (see rr_background.css), so it needs to be
+  // as tall as the whole page to have anything to show past the
+  // first screenful.
+  function pageHeight() {
+    return Math.max(window.innerHeight, document.documentElement.scrollHeight);
+  }
+
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // documentElement.clientWidth (not window.innerWidth) — innerWidth
+    // includes the vertical scrollbar's width, so sizing the canvas off
+    // it made the canvas a few px wider than the actual page, forcing a
+    // permanent horizontal scrollbar once absolute positioning made
+    // that overflow count toward the page's scrollable area.
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = pageHeight();
   }
 
   function buildParticles() {
-    // Reduce particles on mobile to keep CPU/battery reasonable
-    const count = window.innerWidth < 768 ? 35 : 80;
+    // Density is tuned per viewport-height's worth of page, not a flat
+    // count — otherwise the same 80 particles that read as a lively
+    // field over one screen would look sparse spread across a page
+    // several screens tall.
+    const perScreen = window.innerWidth < 768 ? 35 : 80;
+    const count = Math.round(perScreen * (canvas.height / window.innerHeight));
     particles = [];
     for (let i = 0; i < count; i++) {
       particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
         r: 0.5 + Math.random() * 2,
         dx: (Math.random() - 0.5) * 0.3,
         dy: -0.05 - Math.random() * 0.35,
@@ -83,6 +100,15 @@
       ctx = canvas.getContext('2d');
       resize();
       buildParticles();
+
+      // Images/fonts below the fold can grow the page after this first
+      // measurement — re-measure once things have had a chance to load
+      // so the canvas covers the page's real final height instead of
+      // whatever it happened to be on the first paint.
+      setTimeout(function () {
+        resize();
+        buildParticles();
+      }, 100);
     }
 
     // Read saved user preference (default: enabled).
