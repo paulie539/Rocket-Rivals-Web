@@ -46,26 +46,10 @@
   font-size: 0.95rem;
 }
 
-/* Plain, untransformed positioning root for the laurel — deliberately
-   NOT .hall-of-fame itself, since that picks up a permanent
-   `transform: translateY(0)` from its cardIn animation once it
-   finishes, which would hijack the containing block for anything
-   positioned inside it. */
 .hall-of-fame-section {
   position: relative;
 }
 
-/* Scrolls with .hall-of-fame-section (position: absolute, not fixed)
-   instead of staying pinned to the viewport, so the branches move
-   with the plaque as the page scrolls. Vertically it's just inset: 0
-   against the section above — full height, no taller. Horizontally
-   that same section is capped at #main's ~960px, so inset:0 alone
-   wouldn't reach the gutters; the left/margin-left break-out trick
-   pulls it out to the true viewport edges regardless (100vw is
-   always viewport-relative, independent of the positioning context).
-   z-index: -1 still resolves against #page-wrapper's stacking context
-   (the nearest ancestor that has one), same as before, keeping this
-   behind ordinary page content and above #bg-canvas. */
 .hall-of-fame__laurel {
   position: absolute;
   top: 0;
@@ -96,7 +80,7 @@
   fill: currentColor;
 }
 
-/* Gutters disappear below this width — hide rather than let the
+/* Gutters disappear below this width, hide rather than let the
    branches sit under the centered content. */
 @media (max-width: 1100px) {
   .hall-of-fame__laurel {
