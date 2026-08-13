@@ -19,7 +19,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(229, 231, 235, 0.4);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
   margin-bottom: 0.5rem;
 }
 
@@ -28,12 +28,12 @@
   font-weight: 800;
   letter-spacing: -0.01em;
   margin: 0 0 0.75rem;
-  color: #f3f4f6;
+  color: var(--color-heading);
 }
 
 .rr-format__body {
   font-size: 0.92rem;
-  color: rgba(229, 231, 235, 0.55);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
   max-width: 520px;
   margin: 0 auto;
   line-height: 1.6;
@@ -67,19 +67,19 @@
 .rr-format__card:nth-child(3) { animation-delay: 0.25s; }
 
 .rr-format__card[data-accent="purple"]:hover {
-  border-color: rgba(192, 132, 252, 0.4);
-  box-shadow: 0 0 24px -6px rgba(192, 132, 252, 0.35);
-  background: rgba(192, 132, 252, 0.05);
+  border-color: color-mix(in srgb, var(--color-accent-light) 40%, transparent);
+  box-shadow: 0 0 24px -6px color-mix(in srgb, var(--color-accent-light) 35%, transparent);
+  background: color-mix(in srgb, var(--color-accent-light) 5%, transparent);
 }
 .rr-format__card[data-accent="orange"]:hover {
-  border-color: rgba(249, 115, 22, 0.4);
-  box-shadow: 0 0 24px -6px rgba(249, 115, 22, 0.35);
-  background: rgba(249, 115, 22, 0.05);
+  border-color: color-mix(in srgb, var(--color-orange) 40%, transparent);
+  box-shadow: 0 0 24px -6px color-mix(in srgb, var(--color-orange) 35%, transparent);
+  background: color-mix(in srgb, var(--color-orange) 5%, transparent);
 }
 .rr-format__card[data-accent="pink"]:hover {
-  border-color: rgba(255, 126, 179, 0.4);
-  box-shadow: 0 0 24px -6px rgba(255, 126, 179, 0.35);
-  background: rgba(255, 126, 179, 0.05);
+  border-color: color-mix(in srgb, var(--color-pink) 40%, transparent);
+  box-shadow: 0 0 24px -6px color-mix(in srgb, var(--color-pink) 35%, transparent);
+  background: color-mix(in srgb, var(--color-pink) 5%, transparent);
 }
 
 .rr-format__stat {
@@ -88,7 +88,7 @@
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 0.4rem;
-  background: linear-gradient(135deg, #c084fc 20%, #f97316 80%);
+  background: linear-gradient(135deg, var(--color-accent-light) 20%, var(--color-orange) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -99,7 +99,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(229, 231, 235, 0.45);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
 }
 
 /* cardIn keyframes now live in global.css, shared with divisions.css */
@@ -124,7 +124,7 @@
      tag chip: purple = a season stretch, orange = a
      broadcast event, pink = the finale.
    — PROGRESS (status: upcoming/active/done) drives the
-     marker itself in RR gold (#d4af37), lit by the
+     marker itself in RR gold (var(--color-gold)), lit by the
      .rr-timeline__progress fill. Computed client-side in
      scripts/season_timeline.js from each item's
      data-start-date against the visitor's current date —
@@ -173,8 +173,8 @@
   height: 2px;
   border-radius: 2px;
   overflow: hidden;
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), #d4af37);
-  box-shadow: 0 0 12px -1px rgba(212, 175, 55, 0.7), 0 0 3px rgba(212, 175, 55, 0.9);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-gold) 40%, transparent), var(--color-gold));
+  box-shadow: 0 0 12px -1px color-mix(in srgb, var(--color-gold) 70%, transparent), 0 0 3px color-mix(in srgb, var(--color-gold) 90%, transparent);
   z-index: 1;
   transition: width 0.6s ease, height 0.6s ease;
 }
@@ -253,23 +253,23 @@
    Reached stages fill solid RR gold and stop pulsing. */
 
 .rr-timeline__item--span.rr-timeline__item--upcoming .rr-timeline__marker::before {
-  background: rgba(192, 132, 252, 0.14);
-  border: 1.5px dashed rgba(192, 132, 252, 0.45);
+  background: color-mix(in srgb, var(--color-accent-light) 14%, transparent);
+  border: 1.5px dashed color-mix(in srgb, var(--color-accent-light) 45%, transparent);
 }
 .rr-timeline__item--live.rr-timeline__item--upcoming .rr-timeline__dot {
-  background: rgba(249, 115, 22, 0.55);
-  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+  background: color-mix(in srgb, var(--color-orange) 55%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-orange) 15%, transparent);
 }
 .rr-timeline__item--finale.rr-timeline__item--upcoming .rr-timeline__dot {
-  background: rgba(255, 126, 179, 0.6);
-  box-shadow: 0 0 0 5px rgba(255, 126, 179, 0.18);
+  background: color-mix(in srgb, var(--color-pink) 60%, transparent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-pink) 18%, transparent);
 }
 .rr-timeline__item--group.rr-timeline__item--upcoming .rr-timeline__dot {
-  background: rgba(255, 126, 179, 0.6);
-  box-shadow: 0 0 0 5px rgba(255, 126, 179, 0.18);
+  background: color-mix(in srgb, var(--color-pink) 60%, transparent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-pink) 18%, transparent);
 }
 .rr-timeline__item--upcoming .rr-timeline__name {
-  color: rgba(229, 231, 235, 0.45);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
 }
 .rr-timeline__item--upcoming .rr-timeline__tag {
   opacity: 0.55;
@@ -277,28 +277,28 @@
 
 .rr-timeline__item--done .rr-timeline__marker::before,
 .rr-timeline__item--active .rr-timeline__marker::before {
-  background: #d4af37;
+  background: var(--color-gold);
   background-clip: padding-box;
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border: 1.5px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
 }
 .rr-timeline__item--done .rr-timeline__dot,
 .rr-timeline__item--active .rr-timeline__dot {
-  background: #d4af37;
+  background: var(--color-gold);
   animation: none;
 }
 
 .rr-timeline__item--done .rr-timeline__dot {
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2), 0 0 10px -2px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-gold) 20%, transparent), 0 0 10px -2px color-mix(in srgb, var(--color-gold) 60%, transparent);
 }
 
 .rr-timeline__item--active .rr-timeline__marker::before {
-  box-shadow: 0 0 16px -2px rgba(212, 175, 55, 0.7);
+  box-shadow: 0 0 16px -2px color-mix(in srgb, var(--color-gold) 70%, transparent);
 }
 .rr-timeline__item--active .rr-timeline__dot {
-  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.28), 0 0 22px -2px rgba(212, 175, 55, 0.85);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-gold) 28%, transparent), 0 0 22px -2px color-mix(in srgb, var(--color-gold) 85%, transparent);
 }
 .rr-timeline__item--active .rr-timeline__name {
-  color: #f3f4f6;
+  color: var(--color-heading);
 }
 
 .rr-timeline__info {
@@ -315,13 +315,13 @@
   font-weight: 800;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  color: #f3f4f6;
+  color: var(--color-heading);
   transition: color 0.4s ease;
 }
 
 .rr-timeline__item--finale .rr-timeline__name {
   font-size: 1rem;
-  background: linear-gradient(135deg, #f97316 20%, #ff7eb3 80%);
+  background: linear-gradient(135deg, var(--color-orange) 20%, var(--color-pink) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -335,26 +335,26 @@
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
-  color: rgba(229, 231, 235, 0.55);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
   white-space: nowrap;
   transition: opacity 0.4s ease;
 }
 
 .rr-timeline__item--span .rr-timeline__tag {
-  color: #c084fc;
-  background: rgba(192, 132, 252, 0.12);
+  color: var(--color-accent-light);
+  background: color-mix(in srgb, var(--color-accent-light) 12%, transparent);
 }
 .rr-timeline__item--live .rr-timeline__tag {
-  color: #f97316;
-  background: rgba(249, 115, 22, 0.12);
+  color: var(--color-orange);
+  background: color-mix(in srgb, var(--color-orange) 12%, transparent);
 }
 .rr-timeline__item--group .rr-timeline__tag {
-  color: #ff7eb3;
-  background: rgba(255, 126, 179, 0.14);
+  color: var(--color-pink);
+  background: color-mix(in srgb, var(--color-pink) 14%, transparent);
 }
 .rr-timeline__item--finale .rr-timeline__tag {
-  color: #ff7eb3;
-  background: rgba(255, 126, 179, 0.14);
+  color: var(--color-pink);
+  background: color-mix(in srgb, var(--color-pink) 14%, transparent);
 }
 
 /* ── Mobile: line flips vertical, items become rows ── */

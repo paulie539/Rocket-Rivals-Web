@@ -34,7 +34,7 @@
   z-index: 1000;
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(270deg, #6a0dad, #d4af37, #6a0dad, #d4af37);
+  background: linear-gradient(270deg, var(--color-accent-strong), var(--color-gold), var(--color-accent-strong), var(--color-gold));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -69,7 +69,7 @@
 }
 
 .hero-nav a {
-  color: #e5e7eb;
+  color: var(--color-text);
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
@@ -78,7 +78,7 @@
 
 .hero-nav a:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #e5e7eb;
+  color: var(--color-text);
 }
 
 /* ── Schedule nav link: Twitch "LIVE" badge ── */
@@ -100,11 +100,11 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #ef4444;
+  color: var(--color-live);
   padding: 0.15rem 0.45rem;
-  border: 1px solid rgba(239, 68, 68, 0.5);
+  border: 1px solid color-mix(in srgb, var(--color-live) 50%, transparent);
   border-radius: 999px;
-  background: rgba(239, 68, 68, 0.12);
+  background: color-mix(in srgb, var(--color-live) 12%, transparent);
   white-space: nowrap;
   text-decoration: none;
 }
@@ -114,8 +114,8 @@
 }
 
 #rr-live-status:hover {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.22);
+  color: var(--color-live);
+  background: color-mix(in srgb, var(--color-live) 22%, transparent);
 }
 
 #rr-live-status.is-live::before {
@@ -123,7 +123,7 @@
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: #ef4444;
+  background: var(--color-live);
   animation: rrLivePulse 1.6s ease-in-out infinite;
 }
 
@@ -135,8 +135,8 @@
 /* ── Discord button ── */
 .discord-button,
 .hero-nav a.discord-button {
-  background: #5865F2;
-  color: #fff !important;
+  background: var(--color-discord);
+  color: var(--white) !important;
   font-weight: 600;
   padding: 0.5rem 1rem !important;
   border-radius: 999px;
@@ -144,8 +144,8 @@
 
 .discord-button:hover,
 .hero-nav a.discord-button:hover {
-  background: #4752c4 !important;
-  color: #fff !important;
+  background: var(--color-discord-hover) !important;
+  color: var(--white) !important;
 }
 
 /* ── Responsive hero nav ── */
@@ -173,7 +173,7 @@
   #header {
     position: fixed;
     height: 115px;
-    background: rgba(8, 6, 14, 0.92);
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);

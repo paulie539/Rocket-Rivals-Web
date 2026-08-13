@@ -11,9 +11,9 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(168, 85, 247, 0.5) 20%,
-    rgba(212, 175, 55, 0.6) 50%,
-    rgba(168, 85, 247, 0.5) 80%,
+    color-mix(in srgb, var(--color-accent) 50%, transparent) 20%,
+    color-mix(in srgb, var(--color-gold) 60%, transparent) 50%,
+    color-mix(in srgb, var(--color-accent) 50%, transparent) 80%,
     transparent
   );
   border: none;
@@ -23,9 +23,9 @@
   display: inline-block;
   padding: 0.15rem 0.6rem;
   border-radius: 4px;
-  border: 1px solid rgba(249, 115, 22, 0.4);
-  background: rgba(249, 115, 22, 0.12);
-  color: #f97316;
+  border: 1px solid color-mix(in srgb, var(--color-orange) 40%, transparent);
+  background: color-mix(in srgb, var(--color-orange) 12%, transparent);
+  color: var(--color-orange);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -35,14 +35,14 @@
 }
 
 .rr-livestats-badge:hover {
-  background: rgba(249, 115, 22, 0.4);
-  color: #fff;
+  background: color-mix(in srgb, var(--color-orange) 40%, transparent);
+  color: var(--white);
   text-decoration: none;
   cursor: default;
 }
 
 .rr-livestats-intro {
-  color: rgba(229, 231, 235, 0.65);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
@@ -58,29 +58,29 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(229, 231, 235, 0.65);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
   font-size: 0.85rem;
 }
 
 .rr-livestats-filters select {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(168, 85, 247, 0.5);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, transparent);
   background: rgba(255, 255, 255, 0.05);
-  color: #e5e7eb;
+  color: var(--color-text);
   font-size: 0.9rem;
   cursor: pointer;
 }
 
 .rr-livestats-filters select:focus {
   outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
 .rr-livestats-filters select option {
-  background: #1a0a2e;
-  color: #e5e7eb;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .rr-livestats-search {
@@ -94,18 +94,18 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
-  color: #f3f4f6;
+  color: var(--color-heading);
   font-size: 0.85rem;
 }
 
 .rr-livestats-search input::placeholder {
-  color: rgba(229, 231, 235, 0.4);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
 }
 
 .rr-livestats-search input:focus {
   outline: none;
-  border-color: #c084fc;
-  box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.2);
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-light) 20%, transparent);
 }
 
 .rr-table-wrapper {
@@ -145,7 +145,7 @@
   position: sticky;
   top: 0;
   background: #12081f;
-  color: rgba(229, 231, 235, 0.75);
+  color: color-mix(in srgb, var(--color-text) 75%, transparent);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -156,11 +156,11 @@
 }
 
 .rr-stats-table thead th:hover {
-  color: #f3f4f6;
+  color: var(--color-heading);
 }
 
 .rr-stats-table thead th.is-sorted {
-  color: #c084fc;
+  color: var(--color-accent-light);
 }
 
 .rr-stats-table th:nth-child(1),
@@ -168,7 +168,7 @@
   position: sticky;
   left: 0;
   min-width: 200px;
-  background: #0e0820;
+  background: var(--color-surface-alt);
   z-index: 1;
 }
 
@@ -186,11 +186,11 @@
 }
 
 .rr-stats-table tbody tr:hover td {
-  background: rgba(192, 132, 252, 0.06);
+  background: color-mix(in srgb, var(--color-accent-light) 6%, transparent);
 }
 
 .rr-stats-table tbody tr:hover td:nth-child(1) {
-  background: rgba(192, 132, 252, 0.1);
+  background: color-mix(in srgb, var(--color-accent-light) 10%, transparent);
 }
 
 .rr-stats-table tbody tr.is-hidden {

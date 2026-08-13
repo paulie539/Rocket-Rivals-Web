@@ -1,3 +1,47 @@
+/* ── Design tokens ──────────────────────────────────────────────
+   Primitive tier: raw palette values, no usage opinion.
+   Semantic tier: named by intent, points at a primitive. Every
+   other stylesheet should reference the semantic (--color-*) names,
+   never the primitives directly, so a rebrand or dark/light variant
+   only ever touches this block.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  /* Primitives */
+  --purple-500: #a855f7;
+  --violet-400: #c084fc;
+  --purple-900: #1a0a2e;
+  --purple-950: #6a0dad;
+  --gold-500: #d4af37;
+  --gold-200: #f3e5ab;
+  --orange-500: #f97316;
+  --pink-400: #ff7eb3;
+  --red-500: #ef4444;
+  --ink-950: #08060e;
+  --ink-900: #0e0820;
+  --gray-100: #e5e7eb;
+  --gray-50: #f3f4f6;
+  --white: #ffffff;
+  --discord-blurple: #5865F2;
+  --discord-blurple-hover: #4752c4;
+
+  /* Semantic */
+  --color-bg: var(--ink-950);
+  --color-surface: var(--purple-900);
+  --color-surface-alt: var(--ink-900);
+  --color-text: var(--gray-100);
+  --color-heading: var(--gray-50);
+  --color-accent: var(--purple-500);
+  --color-accent-strong: var(--purple-950);
+  --color-accent-light: var(--violet-400);
+  --color-gold: var(--gold-500);
+  --color-gold-pale: var(--gold-200);
+  --color-orange: var(--orange-500);
+  --color-pink: var(--pink-400);
+  --color-live: var(--red-500);
+  --color-discord: var(--discord-blurple);
+  --color-discord-hover: var(--discord-blurple-hover);
+}
+
 /* ── Base reset ── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -12,23 +56,23 @@ body {
      wider than the actual content area, which would otherwise force
      a permanent horizontal scrollbar. */
   overflow-x: hidden;
-  background-color: #08060e;
-  color: #e5e7eb;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   line-height: 1.6;
 }
 
 a {
-  color: #a855f7;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #d4af37;
+  color: var(--color-gold);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #f3f4f6;
+  color: var(--color-heading);
   margin-top: 0;
   font-weight: 700;
 }
@@ -42,7 +86,7 @@ h6 { font-size: 0.67rem; }
 
 hr {
   border: none;
-  border-top: 1px solid rgba(168, 85, 247, 0.3);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
   margin: 1.5rem 0;
 }
 
@@ -190,15 +234,15 @@ h2, h3, h4 {
   top: calc(100% + 0.6rem);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  background: rgba(8, 6, 14, 0.95);
-  color: #e5e7eb;
+  background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+  color: var(--color-text);
   font-size: 0.73rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   white-space: nowrap;
   padding: 0.35rem 0.8rem;
   border-radius: 6px;
-  border: 1px solid rgba(168, 85, 247, 0.35);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   pointer-events: none;
   opacity: 0;

@@ -21,7 +21,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(229, 231, 235, 0.45);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
   margin-bottom: 0.5rem;
 }
 
@@ -31,7 +31,7 @@
   letter-spacing: -0.01em;
   line-height: 1.15;
   margin: 0 0 0.6rem;
-  background: linear-gradient(270deg, #6a0dad, #d4af37, #6a0dad, #d4af37);
+  background: linear-gradient(270deg, var(--color-accent-strong), var(--color-gold), var(--color-accent-strong), var(--color-gold));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -41,7 +41,7 @@
 
 .rr-merch__sub {
   font-size: 0.9rem;
-  color: rgba(229, 231, 235, 0.55);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
   margin: 0;
 }
 
@@ -97,9 +97,9 @@
   height: 2.6rem;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(8, 6, 14, 0.75);
+  background: color-mix(in srgb, var(--color-bg) 75%, transparent);
   backdrop-filter: blur(6px);
-  color: #f3f4f6;
+  color: var(--color-heading);
   font-size: 1.3rem;
   display: flex;
   align-items: center;
@@ -113,9 +113,9 @@
 }
 
 .rr-carousel__arrow:hover {
-  border-color: #c084fc;
-  background: rgba(192, 132, 252, 0.15);
-  box-shadow: 0 0 12px -3px #c084fc;
+  border-color: var(--color-accent-light);
+  background: color-mix(in srgb, var(--color-accent-light) 15%, transparent);
+  box-shadow: 0 0 12px -3px var(--color-accent-light);
 }
 
 .rr-carousel__arrow--prev { left: -1.4rem; }
@@ -142,10 +142,10 @@
 }
 
 .rr-carousel__dot.is-active {
-  background: #c084fc;
+  background: var(--color-accent-light);
   width: 22px;
   border-radius: 3px;
-  box-shadow: 0 0 8px -1px #c084fc;
+  box-shadow: 0 0 8px -1px var(--color-accent-light);
 }
 
 /* ── Progress bar (auto-scroll timer) ── */
@@ -160,7 +160,7 @@
 .rr-carousel__progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #c084fc, #f97316);
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-orange));
   transition: width linear;
 }
 

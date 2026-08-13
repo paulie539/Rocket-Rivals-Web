@@ -27,31 +27,31 @@
 .lanie-heart {
   position: absolute;
   bottom: -10%;
-  color: #ff7eb3;
+  color: var(--color-pink);
   opacity: 0;
   animation: lanieFloat 9s ease-in infinite;
   will-change: transform, opacity;
 }
 
 /* 18 hand-placed hearts: staggered left position, delay, size, drift, and hue */
-.lanie-heart:nth-child(1)  { left: 3%;  font-size: 1.1rem; animation-duration: 8s;  animation-delay: 0s;    color: #ff7eb3; --drift: 30px; }
-.lanie-heart:nth-child(2)  { left: 9%;  font-size: 0.8rem; animation-duration: 10s; animation-delay: 1.2s;  color: #f97316; --drift: -20px; }
-.lanie-heart:nth-child(3)  { left: 15%; font-size: 1.4rem; animation-duration: 7s;  animation-delay: 2.4s;  color: #d4af37; --drift: 15px; }
-.lanie-heart:nth-child(4)  { left: 22%; font-size: 1rem;   animation-duration: 9.5s;animation-delay: 0.6s;  color: #ff7eb3; --drift: -35px; }
-.lanie-heart:nth-child(5)  { left: 29%; font-size: 1.6rem; animation-duration: 8.5s;animation-delay: 3.1s;  color: #c084fc; --drift: 25px; }
-.lanie-heart:nth-child(6)  { left: 36%; font-size: 0.9rem; animation-duration: 11s; animation-delay: 1.8s;  color: #ff7eb3; --drift: -15px; }
-.lanie-heart:nth-child(7)  { left: 43%; font-size: 1.2rem; animation-duration: 7.5s;animation-delay: 4s;    color: #f97316; --drift: 40px; }
-.lanie-heart:nth-child(8)  { left: 50%; font-size: 0.85rem;animation-duration: 9s;  animation-delay: 0.3s;  color: #d4af37; --drift: -25px; }
-.lanie-heart:nth-child(9)  { left: 57%; font-size: 1.5rem; animation-duration: 10.5s;animation-delay: 2.7s; color: #ff7eb3; --drift: 20px; }
-.lanie-heart:nth-child(10) { left: 64%; font-size: 1rem;   animation-duration: 8s;  animation-delay: 1.4s;  color: #c084fc; --drift: -30px; }
-.lanie-heart:nth-child(11) { left: 71%; font-size: 1.3rem; animation-duration: 9.8s;animation-delay: 3.6s;  color: #ff7eb3; --drift: 10px; }
-.lanie-heart:nth-child(12) { left: 78%; font-size: 0.9rem; animation-duration: 7.2s;animation-delay: 0.9s;  color: #f97316; --drift: -40px; }
-.lanie-heart:nth-child(13) { left: 85%; font-size: 1.4rem; animation-duration: 10s; animation-delay: 2.1s;  color: #d4af37; --drift: 30px; }
-.lanie-heart:nth-child(14) { left: 91%; font-size: 1.1rem; animation-duration: 8.7s;animation-delay: 4.4s;  color: #ff7eb3; --drift: -18px; }
-.lanie-heart:nth-child(15) { left: 12%; font-size: 0.75rem;animation-duration: 11.5s;animation-delay: 5.2s; color: #c084fc; --drift: 22px; }
-.lanie-heart:nth-child(16) { left: 47%; font-size: 1.15rem;animation-duration: 9.3s;animation-delay: 5.8s;  color: #ff7eb3; --drift: -28px; }
-.lanie-heart:nth-child(17) { left: 67%; font-size: 0.95rem;animation-duration: 8.2s;animation-delay: 6.4s;  color: #f97316; --drift: 18px; }
-.lanie-heart:nth-child(18) { left: 95%; font-size: 1.25rem;animation-duration: 10.2s;animation-delay: 3.9s; color: #d4af37; --drift: -12px; }
+.lanie-heart:nth-child(1)  { left: 3%;  font-size: 1.1rem; animation-duration: 8s;  animation-delay: 0s;    color: var(--color-pink); --drift: 30px; }
+.lanie-heart:nth-child(2)  { left: 9%;  font-size: 0.8rem; animation-duration: 10s; animation-delay: 1.2s;  color: var(--color-orange); --drift: -20px; }
+.lanie-heart:nth-child(3)  { left: 15%; font-size: 1.4rem; animation-duration: 7s;  animation-delay: 2.4s;  color: var(--color-gold); --drift: 15px; }
+.lanie-heart:nth-child(4)  { left: 22%; font-size: 1rem;   animation-duration: 9.5s;animation-delay: 0.6s;  color: var(--color-pink); --drift: -35px; }
+.lanie-heart:nth-child(5)  { left: 29%; font-size: 1.6rem; animation-duration: 8.5s;animation-delay: 3.1s;  color: var(--color-accent-light); --drift: 25px; }
+.lanie-heart:nth-child(6)  { left: 36%; font-size: 0.9rem; animation-duration: 11s; animation-delay: 1.8s;  color: var(--color-pink); --drift: -15px; }
+.lanie-heart:nth-child(7)  { left: 43%; font-size: 1.2rem; animation-duration: 7.5s;animation-delay: 4s;    color: var(--color-orange); --drift: 40px; }
+.lanie-heart:nth-child(8)  { left: 50%; font-size: 0.85rem;animation-duration: 9s;  animation-delay: 0.3s;  color: var(--color-gold); --drift: -25px; }
+.lanie-heart:nth-child(9)  { left: 57%; font-size: 1.5rem; animation-duration: 10.5s;animation-delay: 2.7s; color: var(--color-pink); --drift: 20px; }
+.lanie-heart:nth-child(10) { left: 64%; font-size: 1rem;   animation-duration: 8s;  animation-delay: 1.4s;  color: var(--color-accent-light); --drift: -30px; }
+.lanie-heart:nth-child(11) { left: 71%; font-size: 1.3rem; animation-duration: 9.8s;animation-delay: 3.6s;  color: var(--color-pink); --drift: 10px; }
+.lanie-heart:nth-child(12) { left: 78%; font-size: 0.9rem; animation-duration: 7.2s;animation-delay: 0.9s;  color: var(--color-orange); --drift: -40px; }
+.lanie-heart:nth-child(13) { left: 85%; font-size: 1.4rem; animation-duration: 10s; animation-delay: 2.1s;  color: var(--color-gold); --drift: 30px; }
+.lanie-heart:nth-child(14) { left: 91%; font-size: 1.1rem; animation-duration: 8.7s;animation-delay: 4.4s;  color: var(--color-pink); --drift: -18px; }
+.lanie-heart:nth-child(15) { left: 12%; font-size: 0.75rem;animation-duration: 11.5s;animation-delay: 5.2s; color: var(--color-accent-light); --drift: 22px; }
+.lanie-heart:nth-child(16) { left: 47%; font-size: 1.15rem;animation-duration: 9.3s;animation-delay: 5.8s;  color: var(--color-pink); --drift: -28px; }
+.lanie-heart:nth-child(17) { left: 67%; font-size: 0.95rem;animation-duration: 8.2s;animation-delay: 6.4s;  color: var(--color-orange); --drift: 18px; }
+.lanie-heart:nth-child(18) { left: 95%; font-size: 1.25rem;animation-duration: 10.2s;animation-delay: 3.9s; color: var(--color-gold); --drift: -12px; }
 
 @keyframes lanieFloat {
   0% {
@@ -85,8 +85,8 @@
 
 .lanie-heart-icon {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
-  color: #ff7eb3;
-  filter: drop-shadow(0 0 18px rgba(255, 126, 179, 0.55));
+  color: var(--color-pink);
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-pink) 55%, transparent));
   animation: laniePulse 1.6s ease-in-out infinite;
   margin-bottom: 0.75rem;
 }
@@ -101,18 +101,18 @@
   font-weight: 900;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
-  background: linear-gradient(270deg, #ff7eb3, #d4af37, #c084fc, #ff7eb3);
+  background: linear-gradient(270deg, var(--color-pink), var(--color-gold), var(--color-accent-light), var(--color-pink));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: navGradient 6s ease infinite;
-  text-shadow: 0 0 40px rgba(255, 126, 179, 0.25);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--color-pink) 25%, transparent);
 }
 
 .lanie-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: rgba(229, 231, 235, 0.7);
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
   margin: 0;
 }
 
@@ -120,7 +120,7 @@
 
 .lanie-sparkle {
   position: absolute;
-  color: #d4af37;
+  color: var(--color-gold);
   font-size: 1.4rem;
   opacity: 0.8;
   animation: lanieTwinkle 2.4s ease-in-out infinite;
@@ -128,8 +128,8 @@
 }
 
 .lanie-sparkle--1 { top: -1.5rem;  left: -3rem;  animation-delay: 0s; }
-.lanie-sparkle--2 { top: 0.5rem;   right: -3.5rem; font-size: 1rem; animation-delay: 0.8s; color: #ff7eb3; }
-.lanie-sparkle--3 { bottom: -0.5rem; left: -2rem; font-size: 0.9rem; animation-delay: 1.5s; color: #c084fc; }
+.lanie-sparkle--2 { top: 0.5rem;   right: -3.5rem; font-size: 1rem; animation-delay: 0.8s; color: var(--color-pink); }
+.lanie-sparkle--3 { bottom: -0.5rem; left: -2rem; font-size: 0.9rem; animation-delay: 1.5s; color: var(--color-accent-light); }
 
 @keyframes lanieTwinkle {
   0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }

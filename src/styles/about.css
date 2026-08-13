@@ -9,9 +9,9 @@
   max-width: 1640px;
   text-align: center;
   background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
   border-radius: 12px;
-  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12) inset, 0 8px 32px rgba(212, 175, 55, 0.08);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-gold) 12%, transparent) inset, 0 8px 32px color-mix(in srgb, var(--color-gold) 8%, transparent);
   animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
@@ -24,7 +24,7 @@
   left: 7px;
   right: 7px;
   bottom: 7px;
-  border: 1px solid rgba(212, 175, 55, 0.18);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 18%, transparent);
   border-radius: 8px;
   pointer-events: none;
 }
@@ -34,7 +34,7 @@
   font-size: 1.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #f3e5ab, #d4af37 50%, #f3e5ab);
+  background: linear-gradient(135deg, var(--color-gold-pale), var(--color-gold) 50%, var(--color-gold-pale));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -42,7 +42,7 @@
 
 .hall-of-fame__subtitle {
   margin: 0;
-  color: rgba(229, 231, 235, 0.65);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
   font-size: 0.95rem;
 }
 
@@ -68,7 +68,7 @@
 .hall-of-fame__laurel-branch {
   height: min(60vh, 480px);
   width: auto;
-  color: rgba(212, 175, 55, 0.35);
+  color: color-mix(in srgb, var(--color-gold) 35%, transparent);
   opacity: 0.6;
 }
 

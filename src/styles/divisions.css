@@ -74,22 +74,22 @@
 #division-select {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(168, 85, 247, 0.5);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, transparent);
   background: rgba(255, 255, 255, 0.05);
-  color: #e5e7eb;
+  color: var(--color-text);
   font-size: 1rem;
   cursor: pointer;
 }
 
 #division-select:focus {
   outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
 #division-select option {
-  background: #1a0a2e;
-  color: #e5e7eb;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 /* ══════════════════════════════════════════════════
