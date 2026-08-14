@@ -171,7 +171,7 @@ export function loadStatGroups(): StatGroups {
           avgAssists.toFixed(2),
           avgSaves.toFixed(2),
           avgSpeed.toFixed(2),
-          supersonicPct.toFixed(2),
+          supersonicPct.toFixed(2) + " %",
         ];
       });
 

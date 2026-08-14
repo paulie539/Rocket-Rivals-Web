@@ -110,7 +110,7 @@
 
 .rr-table-wrapper {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 100%;
   overflow: auto;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -156,7 +156,7 @@
 }
 
 .rr-stats-table thead th:hover {
-  color: var(--color-heading);
+  color: var(--color-gold);
 }
 
 .rr-stats-table thead th.is-sorted {
@@ -167,7 +167,7 @@
 .rr-stats-table td:nth-child(1) {
   position: sticky;
   left: 0;
-  min-width: 200px;
+  min-width: 100px;
   background: var(--color-surface-alt);
   z-index: 1;
 }
@@ -190,9 +190,67 @@
 }
 
 .rr-stats-table tbody tr:hover td:nth-child(1) {
-  background: color-mix(in srgb, var(--color-accent-light) 10%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface-alt));
+}
+
+.rr-stats-table tbody tr:nth-child(odd):hover td:nth-child(1) {
+  background: color-mix(in srgb, var(--color-accent) 18%, #100923);
 }
 
 .rr-stats-table tbody tr.is-hidden {
   display: none;
+}
+
+/* Shrink text/padding progressively so more columns fit before the
+   table wrapper has to fall back to horizontal scrolling. */
+@media (max-width: 900px) {
+  .rr-stats-table {
+    font-size: 0.82rem;
+  }
+
+  .rr-stats-table th,
+  .rr-stats-table td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .rr-stats-table th:nth-child(1),
+  .rr-stats-table td:nth-child(1) {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rr-stats-table {
+    font-size: 0.72rem;
+  }
+
+  .rr-stats-table th,
+  .rr-stats-table td {
+    padding: 0.4rem 0.55rem;
+  }
+
+  .rr-stats-table thead th {
+    font-size: 0.6rem;
+  }
+
+  .rr-stats-table th:nth-child(1),
+  .rr-stats-table td:nth-child(1) {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 420px) {
+  .rr-stats-table {
+    font-size: 0.65rem;
+  }
+
+  .rr-stats-table th,
+  .rr-stats-table td {
+    padding: 0.35rem 0.4rem;
+  }
+
+  .rr-stats-table th:nth-child(1),
+  .rr-stats-table td:nth-child(1) {
+    min-width: 100px;
+  }
 }
