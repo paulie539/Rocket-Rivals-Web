@@ -1,7 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AwardCard from '../components/AwardCard.astro';
 
 import '../styles/about.css';
+
+// Placeholder data for testing the award-card design — swap for real
+// Hall of Fame results once they're finalized.
+const AWARDS = [
+  { award: 'MVP', playerName: 'Kestrel', team: 'Nightfall Ravens', season: 'Season 8', division: 'challengers' },
+  { award: 'Golden Boot', playerName: 'Vantage', team: 'Ironclad Foxes', season: 'Season 8', division: 'challengers' },
+  { award: 'Rookie of the Season', playerName: 'Pixie', team: 'Skyline Wolves', season: 'Season 8', division: 'challengers' },
+  { award: 'MVP', playerName: 'Halcyon', team: 'Solar Flare', season: 'Season 8', division: 'legends' },
+  { award: 'Best Goalkeeper', playerName: 'Junoo', team: 'Ember Sentinels', season: 'Season 8', division: 'legends' },
+  { award: 'Most Improved', playerName: 'Draven', team: 'Crimson Tide', season: 'Season 8', division: 'legends' },
+  { award: 'MVP', playerName: 'Wraith', team: 'Obsidian Fangs', season: 'Season 8', division: 'titans' },
+  { award: 'Clutch Player of the Season', playerName: 'Lumen', team: 'Nova Wolves', season: 'Season 8', division: 'titans' },
+  { award: 'Sportsperson of the Year', playerName: 'Ashen', team: 'Twilight Hounds', season: 'Season 8', division: 'titans' },
+] as const;
+
+// Grouped into clusters of 3 (one per division) for the triangle layout.
+const AWARD_CLUSTERS = [AWARDS.slice(0, 3), AWARDS.slice(3, 6), AWARDS.slice(6, 9)];
+
+// Secondary tier — same per-division triangle shape, smaller cards.
+const MINOR_AWARDS = [
+  { award: 'Best Rotator', playerName: 'Nyx', team: 'Nightfall Ravens', season: 'Season 8', division: 'challengers' },
+  { award: 'Highlight of the Season', playerName: 'Solstice', team: 'Ironclad Foxes', season: 'Season 8', division: 'challengers' },
+  { award: 'Community Choice', playerName: 'Wisp', team: 'Skyline Wolves', season: 'Season 8', division: 'challengers' },
+  { award: 'Hardest Worker', playerName: 'Faelan', team: 'Solar Flare', season: 'Season 8', division: 'legends' },
+  { award: 'Best Teammate', playerName: 'Sable', team: 'Ember Sentinels', season: 'Season 8', division: 'legends' },
+  { award: 'Fan Favorite', playerName: 'Roux', team: 'Crimson Tide', season: 'Season 8', division: 'legends' },
+  { award: 'Most Aerial Goals', playerName: 'Zephyr', team: 'Obsidian Fangs', season: 'Season 8', division: 'titans' },
+  { award: 'Best Comeback', playerName: 'Indigo', team: 'Nova Wolves', season: 'Season 8', division: 'titans' },
+  { award: 'Iron Wall', playerName: 'Marrow', team: 'Twilight Hounds', season: 'Season 8', division: 'titans' },
+] as const;
+
+const MINOR_AWARD_CLUSTERS = [MINOR_AWARDS.slice(0, 3), MINOR_AWARDS.slice(3, 6), MINOR_AWARDS.slice(6, 9)];
 ---
 
 <Layout
@@ -41,8 +74,32 @@ import '../styles/about.css';
       <h2 class="hall-of-fame__title">Hall of Fame</h2>
       <p class="hall-of-fame__subtitle">Awards and Distinctions</p>
     </div>
+  </div>
+
+  <div class="rr-spacer--lg"></div>
+  <div class="hall-of-fame-section">
+    <h1 class="hall-of-fame__season"> Season 8 </h1>
+  </div>
 
 
+  <div class="hall-of-fame__awards">
+    <div class="hall-of-fame__awards-grid">
+      {AWARD_CLUSTERS.map((cluster) => (
+        <div class="hall-of-fame__cluster">
+          {cluster.map((entry) => <AwardCard {...entry} />)}
+        </div>
+      ))}
+    </div>
+
+    <p class="hall-of-fame__awards-label">Also Recognized</p>
+
+    <div class="hall-of-fame__awards-grid">
+      {MINOR_AWARD_CLUSTERS.map((cluster) => (
+        <div class="hall-of-fame__cluster hall-of-fame__cluster--sm">
+          {cluster.map((entry) => <AwardCard {...entry} size="sm" />)}
+        </div>
+      ))}
+    </div>
   </div>
 
   <div class="rr-spacer--lg"></div>

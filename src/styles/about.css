@@ -31,7 +31,7 @@
 
 .hall-of-fame__title {
   margin: 0.25rem 0 0.5rem;
-  font-size: 1.75rem;
+  font-size: 3.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: linear-gradient(135deg, var(--color-gold-pale), var(--color-gold) 50%, var(--color-gold-pale));
@@ -91,5 +91,258 @@
 @media (max-width: 560px) {
   .hall-of-fame {
     padding: 2.25rem 1.25rem 1.75rem;
+  }
+}
+
+.hall-of-fame__season {
+  text-align: center;
+  padding: 0 0 1.5rem 0;
+  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+  font-size: 2.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════
+   HALL OF FAME — award cards
+   ══════════════════════════════════════════════════ */
+
+/* Breaks the grid out of #main's 960px column — same left/width/
+   margin-left trick as .hall-of-fame__laurel above, but position:
+   relative (not absolute) so it stays in normal flow and still
+   occupies real page height instead of collapsing its container. */
+.hall-of-fame__awards {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  padding: 0 2rem;
+}
+
+.hall-of-fame__awards-grid {
+  max-width: 1800px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+/* One cluster per division — 3 circles arranged apex-up, like a
+   circumscribed triangle: the first award sits centered on top,
+   the other two sit side by side beneath it. */
+.hall-of-fame__cluster {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'top   top'
+    'left  right';
+  column-gap: 1.25rem;
+  row-gap: 0.5rem;
+  max-width: 560px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.hall-of-fame__cluster > :first-child {
+  grid-area: top;
+}
+
+.hall-of-fame__cluster > :nth-child(2) {
+  grid-area: left;
+}
+
+.hall-of-fame__cluster > :nth-child(3) {
+  grid-area: right;
+}
+
+.hall-of-fame__cluster--sm {
+  max-width: 360px;
+  column-gap: 1rem;
+}
+
+/* Small uppercase label separating the two award tiers — echoes
+   .rr-format__label's treatment (format.css). */
+.hall-of-fame__awards-label {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+  margin: 4rem 0 -1rem;
+}
+
+.hall-of-fame__award {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 50%;
+  border: 4px solid var(--color-gold-pale);
+  background: linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
+  text-align: center;
+  /* Without this, a badge/name too wide for the current diameter would
+     wrap and grow the box taller than its aspect-ratio, stretching the
+     circle into an oval as the container's fluid width shrinks between
+     breakpoints. overflow: hidden also flips the box's automatic min-size
+     to 0 (per the CSS sizing spec) instead of "grow to fit content", so
+     the ratio is enforced instead of merely suggested. */
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hall-of-fame__award:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+}
+
+/* Secondary tier — same shape/structure (circle, gold border, triangle
+   cluster) at a smaller scale, so it reads as "also recognized" rather
+   than competing with the headline awards above it. */
+.hall-of-fame__award--sm {
+  max-width: 160px;
+  padding: 1rem;
+  border-width: 3px;
+  gap: 0.3rem;
+}
+
+.hall-of-fame__award--sm .hall-of-fame__award-badge {
+  font-size: 0.58rem;
+  padding: 0.2rem 0.55rem;
+}
+
+.hall-of-fame__award--sm .hall-of-fame__award-player {
+  font-size: 0.88rem;
+}
+
+.hall-of-fame__award--sm .hall-of-fame__award-meta {
+  font-size: 0.65rem;
+}
+
+/* One line each, truncated with an ellipsis instead of wrapping — a
+   wrapped line is what was pushing the circle taller than it is wide
+   as the grid resized (see overflow: hidden above). */
+.hall-of-fame__award-badge,
+.hall-of-fame__award-player,
+.hall-of-fame__award-meta {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hall-of-fame__award-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-gold) 16%, transparent);
+  color: var(--color-gold);
+}
+
+.hall-of-fame__award-player {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.hall-of-fame__award-meta {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+/* Per-division colouring — mirrors .rr-tab-btn/.rr-schedule-panel's
+   [data-division] accents in schedule.css (violet = Challengers, orange =
+   Legends, pink = Titans), sourced from the same tokens rather than the
+   plain CSS colour keywords, so the award grid actually matches the rest
+   of the site instead of a same-name-but-different-hue lookalike.
+   The outer border stays gold on every card (the Hall of Fame's own
+   signature); division shows up as a stronger background wash plus a
+   static inset ring, so it reads at a glance and isn't hover-only.
+   Colours are pastel-tinted, not the raw site accents — the raw
+   --color-orange in particular reads as a harsh, saturated block at
+   ring/wash strength. Lightened here (mixed toward white/gold-pale) so
+   the wash reads as a soft translucent glow. Kept as color manipulation
+   on an opaque fill rather than real alpha transparency, so the
+   particle canvas behind the page never shows through and competes
+   with the card text. */
+:root {
+  --award-color-challengers: color-mix(in srgb, var(--color-accent-light) 85%, white 15%);
+  --award-color-legends: color-mix(in srgb, var(--color-orange) 55%, var(--color-gold-pale) 45%);
+  --award-color-titans: color-mix(in srgb, var(--color-pink) 88%, white 12%);
+}
+
+.hall-of-fame__award[data-division="challengers"] {
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-challengers) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-challengers) 32%, transparent);
+}
+.hall-of-fame__award[data-division="challengers"]:hover {
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-challengers) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-challengers) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-challengers) 45%, transparent);
+}
+
+.hall-of-fame__award[data-division="legends"] {
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-legends) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-legends) 32%, transparent);
+}
+.hall-of-fame__award[data-division="legends"]:hover {
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-legends) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-legends) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-legends) 45%, transparent);
+}
+
+.hall-of-fame__award[data-division="titans"] {
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-titans) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-titans) 32%, transparent);
+}
+.hall-of-fame__award[data-division="titans"]:hover {
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-titans) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-titans) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-titans) 45%, transparent);
+}
+
+/* Reuses the row-relative stagger pattern from .rr-format__card
+   (format.css) — repeats per row of three via nth-child(3n+*). */
+.hall-of-fame__award:nth-child(3n+1) { animation-delay: 0.05s; }
+.hall-of-fame__award:nth-child(3n+2) { animation-delay: 0.15s; }
+.hall-of-fame__award:nth-child(3n+3) { animation-delay: 0.25s; }
+
+@media (max-width: 900px) {
+  .hall-of-fame__awards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hall-of-fame__awards {
+    padding: 0 1.25rem;
+  }
+
+  .hall-of-fame__awards-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hall-of-fame__award {
+    max-width: 150px;
+    padding: 1.1rem;
+  }
+
+  .hall-of-fame__cluster {
+    max-width: 340px;
+    column-gap: 0.75rem;
+  }
+
+  .hall-of-fame__award-player {
+    font-size: 1rem;
   }
 }

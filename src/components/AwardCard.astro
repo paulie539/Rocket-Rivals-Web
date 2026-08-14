@@ -1,0 +1,18 @@
+---
+interface Props {
+  award: string;
+  playerName: string;
+  team: string;
+  season: string;
+  division: 'challengers' | 'legends' | 'titans';
+  size?: 'lg' | 'sm';
+}
+
+const { award, playerName, team, season, division, size = 'lg' } = Astro.props;
+---
+
+<div class:list={['hall-of-fame__award', { 'hall-of-fame__award--sm': size === 'sm' }]} data-division={division}>
+  <span class="hall-of-fame__award-badge">{award}</span>
+  <span class="hall-of-fame__award-player">{playerName}</span>
+  <span class="hall-of-fame__award-meta">{team} &middot; {season}</span>
+</div>

@@ -81,7 +81,7 @@
 /* Per-division accent colours */
 
 .rr-tab-btn[data-division="titans"] {
-  --accent: var(--color-pink); /* pink */
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--color-pink) 85%, #f812ff00), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 6%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 2%, var(--color-surface-alt)) 100%);
 }
 .rr-tab-btn[data-division="legends"] {
   --accent: var(--color-orange); /* orange */
