@@ -86,14 +86,17 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
     <div id="page-wrapper">
       <header id="header" role="banner" transition:animate="none">
-        <div class="hero-logo" data-tooltip="Return to Home">
-          <a href="/" rel="home" title="Rocket Rivals">
-            <Image src={logo} alt="Rocket Rivals" width={200} />
-          </a>
-        </div>
 
-        <div class="hero-text">
-          <p><a href="/" rel="home"><strong>Rocket Rivals</strong></a></p>
+        <div class="branding">
+          <div class="hero-logo" data-tooltip="Return to Home">
+            <a href="/" rel="home" title="Rocket Rivals">
+              <Image src={logo} alt="Rocket Rivals" width={200} />
+            </a>
+          </div>
+
+          <div class="hero-text">
+            <p><a href="/" rel="home"><strong>Rocket Rivals</strong></a></p>
+          </div>
         </div>
 
         <nav class="hero-nav" aria-label="Site navigation">
@@ -131,6 +134,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
       </footer>
     </div>
 
+    <script src="../scripts/rr_header_height.js"></script>
     <script src="../scripts/rr_background.js"></script>
     <script src="../scripts/rr_bg_toggle.js"></script>
     <script src="../scripts/live_status.js"></script>

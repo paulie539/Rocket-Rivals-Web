@@ -95,6 +95,13 @@ img {
   height: auto;
 }
 
+.branding {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
 /* ── Shared gradient keyframes (hero title, merch headline, CTA stats) ── */
 @keyframes navGradient {
   0%   { background-position: 0%   50%; }
@@ -155,14 +162,23 @@ img {
 }
 
 /* Header is the hero overlay — absolutely positioned so it floats
-   over the canvas background without consuming document space. */
+   over the canvas background without consuming document space.
+   It's also a flex row of [branding, hero-nav] so the two groups
+   wrap onto their own lines (branding first/on top) instead of
+   overlapping, which is what happens if they're each independently
+   absolutely-positioned with hardcoded offsets. */
 #header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
   z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 1.5rem 2rem;
   pointer-events: none;
 }
 
@@ -170,9 +186,16 @@ img {
   pointer-events: auto;
 }
 
-/* Main content clears the hero nav overlay */
+/* Main content clears the hero nav overlay. --header-height is kept in
+   sync with #header's real rendered height by rr_header_height.js — the
+   header can wrap onto two lines at any width now that branding/hero-nav
+   are flex content instead of independently absolutely-positioned, so a
+   handful of hardcoded per-breakpoint padding-top guesses can't track it
+   (they used to, back when the header's box height never actually
+   changed with content). The 112px fallback only matters for the brief
+   window before that script's first measurement runs. */
 #main {
-  padding: 7rem 2rem 3rem;
+  padding: calc(var(--header-height, 112px) + 1.5rem) 2rem 3rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -272,16 +295,22 @@ h2, h3, h4 {
 .rr-spacer--md   { height: 3rem;   }
 .rr-spacer--lg   { height: 6rem;   }
 
-/* ── Mobile layout ── */
+/* ── Mobile layout ──
+   padding-top isn't overridden here — the base #main rule's
+   var(--header-height) already adapts to the header's real height at
+   any width. Only the horizontal/bottom spacing needs to shrink. */
 @media (max-width: 768px) {
   #main {
-    padding: 7.5rem 1.25rem 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 2rem;
   }
 }
 
 @media (max-width: 560px) {
   #main {
-    padding: 8.5rem 1rem 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
