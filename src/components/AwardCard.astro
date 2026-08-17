@@ -3,16 +3,22 @@ interface Props {
   award: string;
   playerName: string;
   team: string;
-  season: string;
+  allstar: boolean;
   division: 'challengers' | 'legends' | 'titans';
   size?: 'lg' | 'sm';
 }
 
-const { award, playerName, team, season, division, size = 'lg' } = Astro.props;
+const { award, playerName, team, allstar, division, size = 'lg' } = Astro.props;
 ---
 
 <div class:list={['hall-of-fame__award', { 'hall-of-fame__award--sm': size === 'sm' }]} data-division={division}>
+  <span class="hall-of-fame__award-seal" aria-hidden="true">
+    <svg class="hall-of-fame__award-ribbon" viewBox="0 0 32 40" focusable="false">
+      <path d="M6 0h8v34l-4-6-4 6V0Z" />
+      <path d="M18 0h8v34l-4-6-4 6V0Z" />
+    </svg>
+  </span>
   <span class="hall-of-fame__award-badge">{award}</span>
   <span class="hall-of-fame__award-player">{playerName}</span>
-  <span class="hall-of-fame__award-meta">{team} &middot; {season}</span>
+  <span class="hall-of-fame__award-meta">{team}{allstar && <> &middot; All Star</>}</span>
 </div>

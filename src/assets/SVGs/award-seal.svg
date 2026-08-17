@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 66">
+  <g transform="translate(9.5 32) scale(0.84375)" fill="black">
+    <path d="M6 0h8v34l-4-6-4 6V0Z" />
+    <path d="M18 0h8v34l-4-6-4 6V0Z" />
+  </g>
+  <path fill="black" fill-rule="evenodd" d="M45 21A22 22 0 1 1 1 21A22 22 0 1 1 45 21ZM42 21A19 19 0 1 0 4 21A19 19 0 1 0 42 21Z" />
+  <g transform="translate(23 21) scale(0.6) translate(-12 -12)" fill="black">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </g>
+</svg>
