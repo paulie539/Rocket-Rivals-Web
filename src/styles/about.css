@@ -173,45 +173,119 @@
 }
 
 .hall-of-fame__award {
+  /* Star-seal medallion, drawn as a masked ::before below — kept as a
+     custom property (rather than an <img>/inline <svg> in AwardCard.astro)
+     so the flourish is pure CSS and the component markup driving the
+     triad grid doesn't need to change. */
+  --award-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2' fill='black'/%3E%3C/svg%3E");
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   width: 100%;
   max-width: 250px;
-  aspect-ratio: 1 / 1;
+  min-height: 215px;
   margin: 0 auto;
-  padding: 1.5rem;
-  border-radius: 50%;
-  border: 4px solid var(--color-gold-pale);
-  background: linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
+  padding: 1.85rem 1.4rem 1.4rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-gold-pale);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
   text-align: center;
-  /* Without this, a badge/name too wide for the current diameter would
-     wrap and grow the box taller than its aspect-ratio, stretching the
-     circle into an oval as the container's fluid width shrinks between
-     breakpoints. overflow: hidden also flips the box's automatic min-size
-     to 0 (per the CSS sizing spec) instead of "grow to fit content", so
-     the ratio is enforced instead of merely suggested. */
-  overflow: hidden;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s;
   animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Engraved inner frame — same device as .hall-of-fame::before above,
+   scaled down, so each card reads as a small plaque rather than a
+   generic panel. Brightens on hover along with everything else, so the
+   whole plaque reads as "lit up" rather than just the outer border. */
+.hall-of-fame__award::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 14%, transparent);
+  border-radius: 11px;
+  pointer-events: none;
+  transition: border-color 0.3s;
+}
+
+.hall-of-fame__award:hover::after {
+  border-color: color-mix(in srgb, var(--color-gold) 30%, transparent);
+}
+
+/* Star seal, sitting above the badge. Colour comes from --award-icon-color
+   (set per-division below, gold by default) so the same shape does
+   double duty as "headline award" (gold) and "supporting award"
+   (division-tinted). Pops with a springy scale + tilt on hover, echoing
+   the rank-icon hover treatment in divisions.css. */
+.hall-of-fame__award::before {
+  content: '';
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--award-icon-color, var(--color-gold)) 55%, white 45%), var(--award-icon-color, var(--color-gold)));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--award-icon-color, var(--color-gold)) 20%, transparent), 0 4px 14px -4px color-mix(in srgb, var(--award-icon-color, var(--color-gold)) 65%, transparent);
+  -webkit-mask-image: var(--award-star);
+  mask-image: var(--award-star);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 52%;
+  mask-size: 52%;
+  transition: width 0.25s, height 0.25s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
 .hall-of-fame__award:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px) scale(1.025);
   border-color: var(--color-gold);
 }
 
-/* Secondary tier — same shape/structure (circle, gold border, triangle
+.hall-of-fame__award:hover::before {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--award-icon-color, var(--color-gold)) 32%, transparent), 0 6px 20px -4px color-mix(in srgb, var(--award-icon-color, var(--color-gold)) 85%, transparent);
+}
+
+.hall-of-fame__award-badge,
+.hall-of-fame__award-player {
+  transition: background 0.3s, color 0.3s;
+}
+
+.hall-of-fame__award:hover .hall-of-fame__award-badge {
+  background: color-mix(in srgb, var(--color-gold) 26%, transparent);
+}
+
+.hall-of-fame__award:hover .hall-of-fame__award-player {
+  color: var(--color-gold-pale);
+}
+
+/* Top slot of each triad (the division's headline award) — the apex of
+   the triangle — always gets a gold, slightly larger seal, regardless
+   of division. !important because the per-division rule below sets the
+   same custom property and would otherwise win on source order alone. */
+.hall-of-fame__cluster:not(.hall-of-fame__cluster--sm) > :first-child {
+  --award-icon-color: var(--color-gold) !important;
+}
+.hall-of-fame__cluster:not(.hall-of-fame__cluster--sm) > :first-child::before {
+  width: 50px;
+  height: 50px;
+}
+
+/* Secondary tier — same shape/structure (plaque, star seal, triangle
    cluster) at a smaller scale, so it reads as "also recognized" rather
    than competing with the headline awards above it. */
 .hall-of-fame__award--sm {
-  max-width: 160px;
-  padding: 1rem;
-  border-width: 3px;
+  max-width: 165px;
+  min-height: 165px;
+  padding: 1.3rem 1rem 1.1rem;
   gap: 0.3rem;
+}
+
+.hall-of-fame__award--sm::before {
+  width: 28px;
+  height: 28px;
 }
 
 .hall-of-fame__award--sm .hall-of-fame__award-badge {
@@ -220,34 +294,36 @@
 }
 
 .hall-of-fame__award--sm .hall-of-fame__award-player {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
 }
 
 .hall-of-fame__award--sm .hall-of-fame__award-meta {
   font-size: 0.65rem;
 }
 
-/* One line each, truncated with an ellipsis instead of wrapping — a
-   wrapped line is what was pushing the circle taller than it is wide
-   as the grid resized (see overflow: hidden above). */
-.hall-of-fame__award-badge,
+/* The badge (award name) is the longest, most award-defining text —
+   e.g. "Sportsperson of the Year" — so it wraps onto two lines instead
+   of being cut mid-word by an ellipsis. Player name and meta stay
+   single-line since they're short and rarely overflow. */
+.hall-of-fame__award-badge {
+  max-width: 100%;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-gold) 16%, transparent);
+  color: var(--color-gold);
+}
+
 .hall-of-fame__award-player,
 .hall-of-fame__award-meta {
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.hall-of-fame__award-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-gold) 16%, transparent);
-  color: var(--color-gold);
 }
 
 .hall-of-fame__award-player {
@@ -260,6 +336,11 @@
 .hall-of-fame__award-meta {
   font-size: 0.8rem;
   color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  /* Pins the meta line to the card's bottom edge — the grid stretches
+     every card in a row to equal height by default, so this keeps team
+     · season aligned across cards with badges of different lengths. */
+  margin-top: auto;
+  padding-top: 0.3rem;
 }
 
 /* Per-division colouring — mirrors .rr-tab-btn/.rr-schedule-panel's
@@ -268,15 +349,16 @@
    plain CSS colour keywords, so the award grid actually matches the rest
    of the site instead of a same-name-but-different-hue lookalike.
    The outer border stays gold on every card (the Hall of Fame's own
-   signature); division shows up as a stronger background wash plus a
-   static inset ring, so it reads at a glance and isn't hover-only.
+   signature); division shows up in the star seal plus a soft radial
+   wash and inset ring, so it reads at a glance and isn't hover-only.
    Colours are pastel-tinted, not the raw site accents — the raw
    --color-orange in particular reads as a harsh, saturated block at
    ring/wash strength. Lightened here (mixed toward white/gold-pale) so
-   the wash reads as a soft translucent glow. Kept as color manipulation
-   on an opaque fill rather than real alpha transparency, so the
-   particle canvas behind the page never shows through and competes
-   with the card text. */
+   the wash reads as a soft translucent glow. The wash sits over the
+   card's own near-transparent base (not an opaque surface colour) —
+   layering a tint on an opaque fill was muddying the division hue into
+   a grey-brown; real transparency keeps it clean and still reads fine
+   against the dark page behind it. */
 :root {
   --award-color-challengers: color-mix(in srgb, var(--color-accent-light) 85%, white 15%);
   --award-color-legends: color-mix(in srgb, var(--color-orange) 55%, var(--color-gold-pale) 45%);
@@ -284,27 +366,33 @@
 }
 
 .hall-of-fame__award[data-division="challengers"] {
-  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-challengers) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-challengers) 32%, transparent);
+  --award-icon-color: var(--award-color-challengers);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-challengers) 16%, transparent), transparent 70%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--award-color-challengers) 30%, transparent);
 }
 .hall-of-fame__award[data-division="challengers"]:hover {
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-challengers) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-challengers) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-challengers) 45%, transparent);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-challengers) 26%, transparent), transparent 72%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-challengers) 20%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--award-color-challengers) 50%, transparent);
 }
 
 .hall-of-fame__award[data-division="legends"] {
-  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-legends) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-legends) 32%, transparent);
+  --award-icon-color: var(--award-color-legends);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-legends) 16%, transparent), transparent 70%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--award-color-legends) 30%, transparent);
 }
 .hall-of-fame__award[data-division="legends"]:hover {
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-legends) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-legends) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-legends) 45%, transparent);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-legends) 26%, transparent), transparent 72%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-legends) 20%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--award-color-legends) 50%, transparent);
 }
 
 .hall-of-fame__award[data-division="titans"] {
-  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--award-color-titans) 20%, transparent), transparent 75%), linear-gradient(135deg, color-mix(in srgb, white 9%, var(--color-surface-alt)) 0%, color-mix(in srgb, white 4%, var(--color-surface-alt)) 100%);
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--award-color-titans) 32%, transparent);
+  --award-icon-color: var(--award-color-titans);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-titans) 16%, transparent), transparent 70%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--award-color-titans) 30%, transparent);
 }
 .hall-of-fame__award[data-division="titans"]:hover {
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-titans) 18%, transparent), inset 0 0 40px color-mix(in srgb, var(--award-color-titans) 7%, transparent), inset 0 0 0 2px color-mix(in srgb, var(--award-color-titans) 45%, transparent);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--award-color-titans) 26%, transparent), transparent 72%), linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--award-color-titans) 20%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--award-color-titans) 50%, transparent);
 }
 
 /* Reuses the row-relative stagger pattern from .rr-format__card
@@ -333,8 +421,9 @@
 
 @media (max-width: 420px) {
   .hall-of-fame__award {
-    max-width: 150px;
-    padding: 1.1rem;
+    max-width: 155px;
+    min-height: 190px;
+    padding: 1.5rem 1.1rem 1.1rem;
   }
 
   .hall-of-fame__cluster {
