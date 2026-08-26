@@ -6,14 +6,14 @@ needs to find where things live now.
 
 ## Platform Summary
 
-| | Old site (`mysite`) | New site (this repo) |
-|---|---|---|
-| Framework | Drupal 11 (PHP 8.3) | Astro 7 (static output) |
-| Database | MariaDB 10.11 | None — no database |
-| Local dev | DDEV (Docker) | `astro dev` (Node, no containers) |
-| Hosting | Pantheon | Netlify |
+| | Old site (`mysite`) | New site (this repo)                                    |
+|---|---|---------------------------------------------------------|
+| Framework | Drupal 11 (PHP 8.3) | Astro 7 (static output)                                 |
+| Database | MariaDB 10.11 | None                                                    |
+| Local dev | DDEV (Docker) | `astro dev` (Node, no containers)                       |
+| Hosting | Pantheon | Netlify                                                 |
 | Content editing | Drupal admin UI (nodes, Views, blocks) | Directly editing `.astro`/`.css`/`.js` files in the repo |
-| Config management | Drupal CMI (`config/sync/*.yml`) | N/A — no config to sync, everything is code |
+| Config management | Drupal CMI (`config/sync/*.yml`) | N/A         |
 
 There is no CMS anymore. There are no content types, no database, and no
 admin login. Every page is a hand-written Astro template committed to git.
@@ -67,13 +67,12 @@ The old site had six Drupal content types (`config/sync/node.type.*.yml`).
 None of these exist anymore as structured content — each is now a static
 Astro page or a section of one:
 
-| Old Drupal content type | New location |
-|---|---|
-| `page` (basic pages: About, Divisions, Schedule, Stats landing) | `src/pages/about.astro`, `src/pages/divisions.astro`, `src/pages/schedule.astro`, `src/pages/stats/index.astro` |
-| `article` | Not used — no blog/news listing exists on the new site |
-| `team` | Hardcoded division cards in `src/pages/divisions.astro` |
-| `player` | Not stored on-site; per-division stats now link out to Google Sheets (see below) |
-| `esports_card` | Replaced by the `.esports-card` styling (`src/styles/cards.css`) applied to plain `<Image>` elements in `divisions.astro` |
+| Old Drupal content type | New location                                                                                                                                                                                                                                                                                                             |
+|---|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `page` (basic pages: About, Divisions, Schedule, Stats landing) | `src/pages/about.astro`, `src/pages/divisions.astro`, `src/pages/schedule.astro`, `src/pages/stats/index.astro                                                                                                                                                                                                           |
+| `team` | Hardcoded division cards in `src/pages/divisions.astro`                                                                                                                                                                                                                                                                  |
+| `player` | Not stored on-site; per-division stats now link out to Google Sheets (see below)                                                                                                                                                                                                                                         |
+| `esports_card` | Replaced by the `.esports-card` styling (`src/styles/cards.css`) applied to plain `<Image>` elements in `divisions.astro`                                                                                                                                                                                                |
 | `team_standing` | Was previously imported from Google Sheets via the custom `rr_stats` Drush command (`ImportStandingsCommand.php`); the new site skips the import step entirely and just links directly to the public Google Sheet from each division's stats page (`src/pages/stats/titans.astro`, `legends.astro`, `challengers.astro`) |
 
 ## Theme → `src/` Mapping

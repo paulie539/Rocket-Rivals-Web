@@ -2,39 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import AwardCard from '../components/AwardCard.astro';
 
+import { HALL_OF_FAME_SEASONS } from '../lib/hallOfFame';
+import type { AwardEntry } from '../data/Hall of Fame/types';
+
 import '../styles/about.css';
 
-// Placeholder data for testing the award-card design — swap for real
-// Hall of Fame results once they're finalized.
-const AWARDS = [
-  { award: 'MVP', playerName: 'Chief', team: 'Voidborn', allstar: true, division: 'challengers' },
-  { award: 'Offensive Player', playerName: 'RWDT_Draco', team: 'Agni Kai Gaming', allstar: true, division: 'challengers' },
-  { award: 'Defensive Player', playerName: 'Skeddyz', team: '', allstar: false, division: 'challengers' },
-  { award: 'MVP', playerName: 'RaunchyRomanian', team: 'Necro Bloodlust', allstar: true, division: 'legends' },
-  { award: 'Offensive Player', playerName: 'ResilientFury', team: 'Twisted Fates', allstar: true, division: 'legends' },
-  { award: 'Defensive Player', playerName: 'Cokilla', team: 'Black Jackets', allstar: false, division: 'legends' },
-  { award: 'MVP', playerName: 'LEUMYY', team: 'Team Necro', allstar: true, division: 'titans' },
-  { award: 'Offensive Player', playerName: 'LEUMYY', team: 'Team Necro', allstar: true, division: 'titans' },
-  { award: 'Defensive Player', playerName: 'Luminati', team: 'Sync Esports', allstar: false, division: 'titans' },
-] as const;
-
 // Grouped into clusters of 3 (one per division) for the triangle layout.
-const AWARD_CLUSTERS = [AWARDS.slice(0, 3), AWARDS.slice(3, 6), AWARDS.slice(6, 9)];
-
-// Secondary tier — same per-division triangle shape, smaller cards.
-const MINOR_AWARDS = [
-  { award: 'Assisting Player', playerName: 'Shy Axolotl', team: 'Agni Kai Gaming', allstar: false, division: 'challengers' },
-  { award: 'Rookie of the Season', playerName: 'Chief', team: 'Voidborn', allstar: true, division: 'challengers' },
-  { award: 'Most Improved Player', playerName: 'T E A', team: 'Ice Titans', allstar: false, division: 'challengers' },
-  { award: 'Assisting Player', playerName: 's0xxqt', team: 'Boost Stealers', allstar: false, division: 'legends' },
-  { award: 'Rookie of the Season', playerName: 'RaunchyRomanian', team: 'Necro Bloodlust', allstar: true, division: 'legends' },
-  { award: 'Most Improved Player', playerName: 'ResilientFury', team: 'Twisted Fates', allstar: true, division: 'legends' },
-  { award: 'Assisting Player', playerName: 'Dorca', team: 'Team Solis', allstar: false, division: 'titans' },
-  { award: 'Rookie of the Season', playerName: 'LEUMYY', team: 'Team Necro', allstar: true, division: 'titans' },
-  { award: 'Most Improved Player', playerName: 'ghosty', team: 'Team Necro', allstar: true, division: 'titans' },
-] as const;
-
-const MINOR_AWARD_CLUSTERS = [MINOR_AWARDS.slice(0, 3), MINOR_AWARDS.slice(3, 6), MINOR_AWARDS.slice(6, 9)];
+function clusterByDivision(entries: AwardEntry[]) {
+  return [entries.slice(0, 3), entries.slice(3, 6), entries.slice(6, 9)];
+}
 ---
 
 <Layout
@@ -76,31 +52,34 @@ const MINOR_AWARD_CLUSTERS = [MINOR_AWARDS.slice(0, 3), MINOR_AWARDS.slice(3, 6)
     </div>
   </div>
 
-  <div class="rr-spacer--lg"></div>
-  <div class="hall-of-fame-section">
-    <h1 class="hall-of-fame__season"> Season 7 </h1>
-  </div>
+  {HALL_OF_FAME_SEASONS.map((seasonData) => (
+    <>
+      <div class="rr-spacer--lg"></div>
+      <div class="hall-of-fame-section">
+        <h1 class="hall-of-fame__season"> {seasonData.season} </h1>
+      </div>
 
-
-  <div class="hall-of-fame__awards">
-    <div class="hall-of-fame__awards-grid">
-      {AWARD_CLUSTERS.map((cluster) => (
-        <div class="hall-of-fame__cluster">
-          {cluster.map((entry) => <AwardCard {...entry} />)}
+      <div class="hall-of-fame__awards">
+        <div class="hall-of-fame__awards-grid">
+          {clusterByDivision(seasonData.awards).map((cluster) => (
+            <div class="hall-of-fame__cluster">
+              {cluster.map((entry) => <AwardCard {...entry} />)}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
 
-    <p class="hall-of-fame__awards-label">Also Recognized</p>
+        <p class="hall-of-fame__awards-label">Also Recognized</p>
 
-    <div class="hall-of-fame__awards-grid">
-      {MINOR_AWARD_CLUSTERS.map((cluster) => (
-        <div class="hall-of-fame__cluster hall-of-fame__cluster--sm">
-          {cluster.map((entry) => <AwardCard {...entry} size="sm" />)}
+        <div class="hall-of-fame__awards-grid">
+          {clusterByDivision(seasonData.minorAwards).map((cluster) => (
+            <div class="hall-of-fame__cluster hall-of-fame__cluster--sm">
+              {cluster.map((entry) => <AwardCard {...entry} size="sm" />)}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
+      </div>
+    </>
+  ))}
 
   <div class="rr-spacer--lg"></div>
   <div class="rr-spacer--lg"></div>
