@@ -14,8 +14,10 @@ const { award, playerName, team, allstar, division, size = 'lg' } = Astro.props;
 <div class:list={['hall-of-fame__award', { 'hall-of-fame__award--sm': size === 'sm' }]} data-division={division}>
   <span class="hall-of-fame__award-seal" aria-hidden="true">
     <svg class="hall-of-fame__award-ribbon" viewBox="0 0 32 40" focusable="false">
-      <path d="M6 0h8v34l-4-6-4 6V0Z" />
-      <path d="M18 0h8v34l-4-6-4 6V0Z" />
+      <path d="M6 0 14 0 12.6 32.5 10 26 7.4 32.5Z" />
+      <path d="M10 0 14 0 12.6 32.5 10 26Z" fill="#000" fill-opacity="0.22" />
+      <path d="M18 0 26 0 24.6 32.5 22 26 19.4 32.5Z" />
+      <path d="M18 0 22 0 22 26 19.4 32.5Z" fill="#000" fill-opacity="0.22" />
     </svg>
   </span>
   <span class="hall-of-fame__award-badge">{award}</span>
